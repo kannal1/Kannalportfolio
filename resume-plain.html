@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kannal Umayan, Resume</title>
+<meta name="description" content="Product Designer · Bengaluru · 3+ years across consumer fintech and B2B operations.">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #ffffff;
+  color: #18181b;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Small action bar at top, only visible on screen */
+.actionbar {
+  background: #f4f4f5;
+  border-bottom: 1px solid #e4e4e7;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.actionbar-left {
+  font-size: 13px;
+  color: #52525b;
+}
+
+.actionbar-left a {
+  color: #18181b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.actionbar-left a:hover { text-decoration: underline; }
+
+.actionbar-right {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  background: #18181b;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover { opacity: 0.9; }
+
+.btn.secondary {
+  background: #ffffff;
+  color: #18181b;
+  border: 1px solid #d4d4d8;
+}
+
+/* PAGE */
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 56px 80px;
+}
+
+/* HEADER */
+.head {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e4e4e7;
+}
+
+.name {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #18181b;
+  margin-bottom: 6px;
+}
+
+.role {
+  font-size: 14px;
+  color: #52525b;
+  margin-bottom: 12px;
+}
+
+.contact {
+  font-size: 13px;
+  color: #3f3f46;
+  line-height: 1.7;
+}
+
+.contact a {
+  color: #3f3f46;
+  text-decoration: none;
+}
+
+.contact a:hover { text-decoration: underline; }
+
+.contact .sep { color: #a1a1aa; margin: 0 8px; }
+
+/* SECTION */
+.section {
+  margin-bottom: 22px;
+}
+
+.section h2 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #71717a;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e4e4e7;
+}
+
+/* SUMMARY */
+.summary {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #27272a;
+}
+
+.summary strong { color: #18181b; font-weight: 700; }
+
+/* JOB */
+.job {
+  margin-bottom: 18px;
+}
+
+.job:last-child { margin-bottom: 0; }
+
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.job-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #18181b;
+}
+
+.job-title .role-text {
+  color: #3f3f46;
+  font-weight: 500;
+}
+
+.job-dates {
+  font-size: 12px;
+  color: #71717a;
+  font-weight: 500;
+}
+
+.job-context {
+  font-size: 12.5px;
+  color: #52525b;
+  margin-bottom: 6px;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+ul.bullets {
+  list-style: none;
+  margin-top: 4px;
+}
+
+ul.bullets li {
+  position: relative;
+  padding: 3px 0 3px 14px;
+  color: #27272a;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+ul.bullets li::before {
+  content: '·';
+  position: absolute;
+  left: 2px;
+  color: #52525b;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  top: 6px;
+}
+
+ul.bullets li strong {
+  color: #18181b;
+  font-weight: 700;
+}
+
+/* LISTS */
+.taglist {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #27272a;
+}
+
+.taglist .sep { color: #a1a1aa; margin: 0 6px; }
+
+/* EDUCATION */
+.edu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.edu-deg {
+  font-size: 13.5px;
+  color: #18181b;
+  font-weight: 600;
+}
+
+.edu-school {
+  font-size: 12.5px;
+  color: #52525b;
+  margin-top: 2px;
+}
+
+.edu-dates {
+  font-size: 12px;
+  color: #71717a;
+  font-weight: 500;
+}
+
+/* LINKS */
+.links {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #3f3f46;
+}
+
+.links a {
+  color: #3f3f46;
+  text-decoration: none;
+}
+
+.links a:hover { text-decoration: underline; }
+
+.links strong {
+  color: #18181b;
+  font-weight: 600;
+  display: inline-block;
+  min-width: 110px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .page { padding: 32px 24px 60px; }
+  .actionbar { padding: 10px 16px; }
+  .name { font-size: 24px; }
+  .head { margin-bottom: 20px; }
+}
+
+/* PRINT */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 16mm 14mm 16mm;
+  }
+
+  .actionbar { display: none !important; }
+
+  body {
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  .page {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .head {
+    margin-bottom: 14pt;
+    padding-bottom: 10pt;
+    page-break-after: avoid;
+  }
+
+  .name { font-size: 22pt; }
+  .role { font-size: 10.5pt; }
+  .contact { font-size: 9.5pt; }
+
+  .section {
+    margin-bottom: 11pt;
+    page-break-inside: avoid;
+  }
+
+  .section h2 {
+    font-size: 8.5pt;
+    margin-bottom: 7pt;
+  }
+
+  .summary { font-size: 10pt; }
+
+  .job {
+    margin-bottom: 10pt;
+    page-break-inside: avoid;
+  }
+
+  .job-title { font-size: 10.5pt; }
+  .job-dates { font-size: 9pt; }
+  .job-context { font-size: 9.5pt; }
+
+  ul.bullets li {
+    font-size: 9.5pt;
+    padding: 2pt 0 2pt 13pt;
+  }
+
+  ul.bullets li::before { font-size: 14pt; top: 5pt; }
+
+  .taglist { font-size: 9.5pt; line-height: 1.6; }
+  .edu-deg { font-size: 10pt; }
+  .edu-school { font-size: 9.5pt; }
+  .edu-dates { font-size: 9pt; }
+  .links { font-size: 9.5pt; line-height: 1.7; }
+
+  a { color: #18181b !important; text-decoration: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="actionbar">
+  <div class="actionbar-left">
+    ATS-friendly resume · <a href="resume.html">View styled version</a>
+  </div>
+  <div class="actionbar-right">
+    <button class="btn" onclick="window.print()">Save as PDF</button>
+  </div>
+</div>
+
+<main class="page">
+
+  <header class="head">
+    <h1 class="name">Kannal Umayan</h1>
+    <div class="role">Product Designer · Bengaluru, India</div>
+    <div class="contact">
+      <a href="mailto:kannal2242@gmail.com">kannal2242@gmail.com</a>
+      <span class="sep">·</span>
+      <a href="tel:+918220740126">+91 8220740126</a>
+      <span class="sep">·</span>
+      <a href="https://linkedin.com/in/kannal-umayan-809120235">linkedin.com/in/kannal-umayan-809120235</a>
+    </div>
+  </header>
+
+
+  <section class="section">
+    <h2>Summary</h2>
+    <p class="summary">
+      Product designer with ~3 years across consumer fintech and B2B operations. At Compound (May 2024 to present), sole designer for two live financial products. The <strong>CREB</strong> redesign drove <strong>400 to 2,000 users</strong>, <strong>~70% conversion lift</strong>, and <strong>$400k to $4M</strong> in maintained account value. Also designed and shipped both Compound marketing sites in Webflow end-to-end. Earlier UI design work at Fibonalabs contributing to a B2B operations platform, and two years as a .NET developer before that, which I now bring directly to engineering handoff conversations.
+    </p>
+  </section>
+
+
+  <section class="section">
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-title">Compound <span class="role-text">,  Product Designer</span></div>
+        <div class="job-dates">May 2024, Present</div>
+      </div>
+      <p class="job-context">Sole product designer for two live, revenue-generating financial products. Full lifecycle ownership from research through launch and post-launch iteration.</p>
+      <ul class="bullets">
+        <li><strong>Compound Real Estate Bonds (CREB).</strong> Redesigned the dashboard, withdraw, auto-recurring, and statement flows end-to-end. Drove <strong>400 to 2,000 active users, $400k to $4M held account value, approximately $1M monthly revenue, and ~70% conversion lift</strong> over twelve months.</li>
+        <li><strong>Compound Gold Bonds (CGB).</strong> Designed every screen from scratch in a three-month sprint, auth, onboarding carousel, dashboard, purchase wizard with custom-tenure modal, withdraw flow. Launched October 2025; currently in early adoption for accredited investors at a $10k minimum.</li>
+        <li><strong>Marketing surfaces.</strong> Designed and deployed both Compound websites, compoundrealestatebonds.com and compoundgoldbonds.com, end-to-end in Webflow, including layout architecture, CMS structuring, and post-launch refinements. Also created social ad creatives and responsive email templates for acquisition campaigns.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-title">Fibonalabs <span class="role-text">,  UI Designer</span></div>
+        <div class="job-dates">2023, May 2024</div>
+      </div>
+      <p class="job-context">Agency design work across client projects. Multi-designer engagements at the intersection of UX research and product design.</p>
+      <ul class="bullets">
+        <li><strong>3Eco Delivery Operations.</strong> Contributed select use cases on a B2B last-mile delivery and fleet operations platform, CS Revenue (add/edit/complete states), CPro Daily Vehicle Checklist plus Attendance, ACPro Shift Timeline, and the Penalty Operations admin web view. Worked alongside other designers on the larger platform.</li>
+        <li>Designed wireframes, prototypes, and user flows for web and mobile applications across client engagements. Assisted in UX research and behavior analysis through surveys and interviews.</li>
+        <li>Collaborated with cross-functional teams to refine UI systems and improve usability across projects.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-title">Bigdbiz Solutions <span class="role-text">,  .NET Developer</span></div>
+        <div class="job-dates">Jan 2021, Jan 2023</div>
+      </div>
+      <ul class="bullets">
+        <li>Built and maintained web applications using ASP.NET MVC and .NET Core. Worked on backend logic, database integration, and performance optimization.</li>
+        <li>Gained a working understanding of <strong>technical feasibility and product architecture</strong>, which I now bring directly into design reviews and engineering handoffs at Compound.</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <h2>AI Practice</h2>
+    <ul class="bullets">
+      <li><strong>Daily tooling.</strong> ChatGPT, Claude, and Gemini for ideation, copy iteration, research synthesis, and visual exploration. Image generation via ChatGPT and Gemini for early concept visualization.</li>
+      <li><strong>At Compound.</strong> Designed the email marketing flow and profile section with AI tooling (Claude, ChatGPT) accelerating ideation, copy drafting, and pattern exploration. Final outputs hand-refined in Figma.</li>
+      <li><strong>Vibe-coded prototypes.</strong> Built multiple landing page prototypes using Claude, ChatGPT, and Google Stitch, generating initial structure, then iterating on design and code directly. Comfortable with structured prompt engineering for design-specific outcomes.</li>
+    </ul>
+  </section>
+
+
+  <section class="section">
+    <h2>Skills</h2>
+    <p class="taglist">
+      Product Strategy and UX Architecture<span class="sep">·</span>Financial Product Design<span class="sep">·</span>Investment Workflow Design<span class="sep">·</span>Dashboard and Data Visualization<span class="sep">·</span>Design Systems<span class="sep">·</span>Responsive Web Design<span class="sep">·</span>Landing Page Design and Optimization<span class="sep">·</span>Marketing Creative<span class="sep">·</span>Webflow Development<span class="sep">·</span>Prompt Engineering
+    </p>
+  </section>
+
+
+  <section class="section">
+    <h2>Tools</h2>
+    <p class="taglist">
+      Figma<span class="sep">·</span>Webflow<span class="sep">·</span>ChatGPT<span class="sep">·</span>Claude<span class="sep">·</span>Gemini<span class="sep">·</span>Google Stitch<span class="sep">·</span>Adobe Photoshop<span class="sep">·</span>Adobe Illustrator<span class="sep">·</span>Notion
+    </p>
+  </section>
+
+
+  <section class="section">
+    <h2>Education</h2>
+    <div class="edu-row">
+      <div>
+        <div class="edu-deg">BE, Electronics and Communication Engineering</div>
+        <div class="edu-school">VSA Group of Institutions, Salem</div>
+      </div>
+      <div class="edu-dates">2014, 2018</div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <h2>Links</h2>
+    <div class="links">
+      <div><strong>Live work</strong> <a href="https://www.compoundrealestatebonds.com/">compoundrealestatebonds.com</a> · <a href="https://www.compoundgoldbonds.com/">compoundgoldbonds.com</a></div>
+      <div><strong>Portfolio</strong> <a href="index.html">View full portfolio</a></div>
+      <div><strong>LinkedIn</strong> <a href="https://linkedin.com/in/kannal-umayan-809120235">linkedin.com/in/kannal-umayan-809120235</a></div>
+    </div>
+  </section>
+
+</main>
+
+<script src="parallax.js" defer></script>
+</body>
+</html>

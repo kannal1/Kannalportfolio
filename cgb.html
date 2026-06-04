@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Compound Gold Bonds, Kannal Umayan</title>
+<meta name="description" content="CGB case study: a premium wealth product for accredited investors, designed as a sibling to CREB." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f5f5f5; --panel:#ffffff; --ink:#0b0c0e; --ink2:rgba(11,12,14,.6); --ink3:rgba(11,12,14,.58);
+    --accent:#1f5cff; --card-bg:#ffffff; --card-shadow:0px 0.7px 0.7px -0.67px rgba(0,0,0,.08),0px 1.8px 1.8px -1.33px rgba(0,0,0,.08),0px 3.6px 3.6px -2px rgba(0,0,0,.07),0px 6.9px 6.9px -2.67px rgba(0,0,0,.07),0px 13.6px 13.6px -3.33px rgba(0,0,0,.05),0px 30px 30px -4px rgba(0,0,0,.02),inset 0px 3px 1px 0px rgba(255,255,255,1); --line:rgba(11,12,14,.12); --line2:rgba(11,12,14,.2);
+    --display:'Archivo Expanded','Archivo',system-ui,sans-serif; --sans:'Geist',system-ui,sans-serif; --mono:'Geist Mono',monospace;
+    --ease:cubic-bezier(.2,.8,.2,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#05060c;}
+  
+  
+  #loader{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .8s var(--ease);}
+  #loader.hide{opacity:0;pointer-events:none;}
+  .lring{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.12);border-top-color:var(--accent);animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .ltxt{font-family:var(--mono);font-size:12px;letter-spacing:.25em;color:var(--ink3);text-transform:uppercase;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,56px);}
+  nav .brand{font-family:var(--display);font-size:22px;}
+  nav .links{display:flex;gap:24px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;}
+  nav .links a{opacity:.6;transition:opacity .3s;} nav .links a:hover{opacity:1;}
+  .approach{position:relative;z-index:10;max-width:920px;margin:0 auto;padding:160px clamp(20px,5vw,60px) 40px;text-align:center;}
+  .approach .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;}
+  .approach .eyebrow .d{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:9px;box-shadow:0 0 12px var(--accent);vertical-align:middle;animation:blink 2.4s ease-in-out infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.4;}}
+  .approach h1{font-family:var(--display);font-weight:800;font-size:clamp(40px,8vw,104px);line-height:.96;letter-spacing:-.02em;}
+  .approach h1 em{font-style:normal;color:var(--accent);}
+  .approach p{margin-top:26px;max-width:560px;font-size:clamp(15px,1.6vw,18px);line-height:1.7;color:var(--ink2);}
+  .approach 
+  .approach .cue::before{content:'';display:inline-block;width:24px;height:1px;background:var(--ink3);vertical-align:middle;margin-right:10px;}
+  @keyframes bob{0%,100%{opacity:.5;transform:translateY(0);}50%{opacity:1;transform:translateY(4px);}}
+  .doc{position:relative;z-index:10;}
+  .doc-inner{max-width:920px;margin:0 auto;padding:40px clamp(20px,5vw,60px) 120px;}
+  .dock-line{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);text-align:center;padding-top:30px;margin-bottom:70px;}
+  .dock-line::before,.dock-line::after{content:'';display:inline-block;width:30px;height:1px;background:var(--line2);vertical-align:middle;margin:0 14px;}
+  .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:70px;}
+  .meta-cell{background:var(--panel);padding:22px 20px;}
+  .meta-cell .label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+  .meta-cell .value{font-size:15px;color:var(--ink);}
+  .sec{margin-bottom:74px;}
+  .sec .label{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  .sec h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,4vw,46px);line-height:1.08;letter-spacing:-.01em;margin-bottom:22px;}
+  .sec p{font-size:16.5px;line-height:1.78;color:var(--ink2);margin-bottom:18px;}
+  .sec p strong{color:var(--ink);font-weight:500;}
+  .sec ul{list-style:none;margin:8px 0 18px;}
+  .sec ul li{position:relative;padding-left:24px;font-size:16px;line-height:1.7;color:var(--ink2);margin-bottom:12px;}
+  .sec ul li::before{content:'';position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+  .cards3 .c{border:1px solid var(--line);border-radius:12px;padding:26px 24px;background:var(--panel);}
+  .cards3 .c .t{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+  .cards3 .c .b{font-size:14.5px;line-height:1.65;color:var(--ink2);}
+  figure{margin:30px 0;}
+  figure img{width:100%;border-radius:12px;border:1px solid var(--line);display:block;background:var(--panel);}
+  figure figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink3);margin-top:12px;text-align:center;}
+  .img-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .img-2 img{width:auto;max-width:100%;height:auto;max-height:min(560px,75vh);margin:0 auto;display:block;border-radius:20px;border:1px solid rgba(0,0,0,.06);box-shadow:var(--card-shadow);background:var(--panel);}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .end{border-top:1px solid var(--line);padding-top:50px;text-align:center;}
+  .end h2{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,60px);line-height:1.04;margin-bottom:26px;}
+  .end h2 em{font-style:normal;color:var(--accent);}
+  .end .row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 30px;font-family:var(--mono);font-size:13px;}
+  .end .row a{border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .3s;}
+  .end .row a:hover{border-color:var(--accent);}
+  @media (max-width:760px){ nav .links{gap:16px;font-size:11px;} .meta-grid{grid-template-columns:repeat(2,1fr);} .cards3,.img-2{grid-template-columns:1fr;} }
+
+  .c,.card,.impact .stat,.gap-card,.meta-grid,figure img{border-radius:20px;}
+  .c,.card,.gap-card{background:var(--card-bg);box-shadow:var(--card-shadow);border:1px solid rgba(0,0,0,.06);padding:24px;}
+  .impact .stat{background:var(--card-bg);box-shadow:var(--card-shadow);border:1px solid rgba(0,0,0,.06);padding:24px;}
+  figure img{box-shadow:var(--card-shadow);border:1px solid rgba(0,0,0,.06);}
+  .meta-grid{background:var(--card-bg);box-shadow:var(--card-shadow);border:1px solid rgba(0,0,0,.06);padding:26px;}
+  .screens{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,200px));gap:24px 16px;justify-content:center;margin:32px 0;}
+  .screens figure{margin:0;}
+  .screens img{width:100%;height:auto;max-height:none;border-radius:18px;border:1px solid rgba(0,0,0,.06);box-shadow:var(--card-shadow);background:var(--panel);display:block;}
+  .screens figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--ink3);margin-top:10px;text-align:center;line-height:1.45;}
+  .shot-tall{max-width:300px;margin:32px auto;}
+  .shot-tall figure{margin:0;}
+  .shot-tall img{width:100%;height:auto;max-height:none;border-radius:18px;border:1px solid rgba(0,0,0,.06);box-shadow:var(--card-shadow);background:var(--panel);display:block;}
+  .shot-tall figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--ink3);margin-top:10px;text-align:center;}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="brand">Kannal Umayan</a>
+  <div class="links"><a href="index.html">← All work</a><a href="resume.html">Résumé</a><a href="mailto:kannal2242@gmail.com" class="cta">Say hi →</a></div>
+</nav>
+<div class="approach" id="approach">
+  <div class="eyebrow"><span class="d"></span>Wealth · Compound · 2025</div>
+  <h1>Compound<br>Gold <em>Bonds.</em></h1>
+  <p>A premium sibling product for accredited investors with $10k+ to commit. New audience, new brand, every screen from scratch.</p>
+</div>
+<main class="doc"><div class="doc-inner">
+  <div class="dock-line reveal">Docking · case study begins</div>
+  <div class="meta-grid reveal"><div class="meta-cell"><div class="label">Project Type</div><div class="value">In-house Product</div></div><div class="meta-cell"><div class="label">Timeline</div><div class="value">Launched Oct 2025</div></div><div class="meta-cell"><div class="label">Role</div><div class="value">Sole Product Designer</div></div><div class="meta-cell"><div class="label">Tools</div><div class="value">Figma, Notion</div></div></div>
+  <section class="sec reveal"><div class="label">The story in short</div><h2>A sibling to CREB, built for serious money</h2><p>CREB had started to compound. The next question from Compound was about the people it <em>couldn't</em> serve well: accredited investors with $10,000 or more to commit, who expected a wealth product to feel like one. Compound Gold Bonds was the answer - gold-backed bonds for that audience, with IRA investing, accreditation, and nominee management built in.</p><p>I designed it as a <strong>sibling, not an extension</strong>: new audience, new brand, a design system built from scratch, so CGB could stand on its own while still feeling part of the Compound family. The hard part was never the asset. It was the tone - premium and trustworthy enough for large sums, without becoming the kind of opaque, jargon-heavy wealth tool that quietly scares people off.</p><figure><img src="images/cgb-hero.png" alt="Compound Gold Bonds, a wealth product for accredited investors" loading="lazy"><figcaption>Compound Gold Bonds - a wealth product for accredited investors</figcaption></figure></section>
+  <section class="sec reveal"><div class="label">The challenge</div><h2>Premium expectations, fintech clarity</h2><p>Accredited investors bring scrutiny, and a $10,000 minimum raises the stakes of every screen. The product had to signal it could be trusted with serious money while staying as clear and legible as a consumer app. That was the needle to thread on every flow: <strong>considered and exact, never ornamental; premium, never opaque.</strong></p></section>
+  <section class="sec reveal"><div class="label">Research &amp; positioning</div><h2>The same trust problem, higher up the ladder</h2><p>I didn't restart research from zero. CGB inherited it from CREB, where months of user interviews, support transcripts, and funnel review had already surfaced the core insight: people weren't confused about <em>what</em> the product was, they were unsure whether they could trust it with their money. That held for CGB too, only the bar for "trustworthy" rose with the balance at risk.</p><p>The competitive read carried over as well. Traditional REITs and private-wealth tools owned the asset class but hid it behind high minimums and slow, opaque interfaces; neobanks had the polish and trust signals but no real-asset yield; robo-advisors had the onboarding finesse but abstracted the investment away. CGB's opening was the one CREB found, moved up-market: the clarity of a modern app applied to a serious, gold-backed asset, without the friction incumbents treat as a feature.</p><p style="font-size:14.5px;color:var(--ink3);">The full research and competitive breakdown lives in <a href="creb.html" style="color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:1px;">the CREB case study →</a></p></section>
+  <section class="sec reveal"><div class="label">Brand</div><h2>Refining the mark before the screens</h2><p>A wealth product is judged before it's used, and the wordmark sets the tone. Before designing a single screen, I refined the Compound | Gold Bonds lockup: tightening the spacing, balancing the weight between "Compound" and "Gold Bonds," and correcting the optical alignment of the divider so the mark reads as deliberate at any size. Small moves, but they're the first trust signal a user ever receives.</p><figure><img src="images/cgb-logo.png" alt="Compound Gold Bonds wordmark, refined versus original" loading="lazy"><figcaption>Refining the wordmark - the improved lockup (left) against the original (right)</figcaption></figure></section>
+  <section class="sec reveal"><div class="label">The design system</div><h2>Premium is restraint, not decoration</h2><p>CGB needed its own system, built fresh, and the thesis was a single line: <strong>premium is restraint, not decoration.</strong> Wealth users read confidence in calm, exact surfaces, not in ornament. So the system leans on generous space, a quiet navy-and-gold palette, and Manrope for a tone that signals care without shouting.</p><p>It's a complete kit - color, type, iconography, buttons, forms, cards, modals, and states - but the components that matter most are the ones that carry trust: KPI and rate cards that state holdings and APY plainly, a "secure &amp; trusted" pattern, confirmation modals that restate exactly what a large investment commits to, and a progress stepper that turns KYC, bank connection, accreditation, and IRA setup into visible, finite steps instead of open-ended friction.</p><figure><img src="images/cgb-design-system.png" alt="The Compound Gold Bonds design system" loading="lazy"><figcaption>The Compound Gold Bonds design system, built from scratch</figcaption></figure><figure><img src="images/cgb-ui-kit.png" alt="CGB navigation UI kit across themes and breakpoints" loading="lazy"><figcaption>Navigation kit - light and dark, top bar and bottom nav, across breakpoints</figcaption></figure></section>
+  <section class="sec reveal"><div class="label">Architecture &amp; flow</div><h2>Every module and every route, mapped first</h2><p>As with CREB, I mapped the whole product before styling anything. A sitemap laid out every module - onboarding, dashboard, bonds, transfer and withdraw, IRA, accreditation, profile, and the global states most products forget - so the system was designed as a whole rather than screen by screen.</p><figure><img src="images/cgb-sitemap.png" alt="Compound Gold Bonds sitemap of all modules and screens" loading="lazy"><figcaption>The full product sitemap - every module and screen</figcaption></figure><p>Then the end-to-end flow. CGB's journey is deliberately heavier than CREB's, and it has to be: landing → sign in or create account → email OTP → KYC and bank connection → accreditation, and only then into the dashboard. Every one of those gates is a place trust can break, so each was designed to feel like reassurance, not bureaucracy.</p><figure><img src="images/cgb-user-flow.png" alt="Compound Gold Bonds end-to-end user flow" loading="lazy"><figcaption>The end-to-end user journey, from landing to a managed portfolio</figcaption></figure></section>
+  <section class="sec reveal"><div class="label">From blueprint to screens</div><h2>Walking the journey, low fidelity to high</h2><p>I wireframed the flow in low fidelity first - structure and order before style - then raised the fidelity once the skeleton held. Read in sequence, the screens are the clearest way to see the product. A user lands, signs in or creates an account, and verifies by OTP. They clear KYC and connect a bank, then accreditation, the gate unique to this audience. Past it, the dashboard becomes the hub: holdings, interest statistics, and gold-bond rates at a glance.</p><p>From there the paths fan out. <strong>Buy Bonds</strong> - pick a term, enter an amount above the $10k minimum, review, and pay from a connected bank. <strong>Invest using an IRA</strong> - a separate verified track for tax-advantaged investing. <strong>Profile and nominees</strong> - assigning who inherits the bonds and at what allocation, a detail that matters at this level of commitment. Underneath sits portfolio management: statistics, transactions, statements, and transfer or withdraw, each built to show the math before anything is committed.</p><figure><img src="images/cgb-wireframe-lofi.png" alt="Low-fidelity wireframes of the CGB flow" loading="lazy"><figcaption>Low-fidelity wireframes - structure and flow first</figcaption></figure><figure><img src="images/cgb-wireframe-hifi.png" alt="High-fidelity wireframes of the CGB flow" loading="lazy"><figcaption>High-fidelity wireframes - the journey resolved, end to end</figcaption></figure></section>
+  <section class="sec reveal"><div class="label">The product, shipped</div><h2>The finished screens, in colour</h2><p>The wireframes became this. Read in colour, the screens are the clearest proof of the thesis: premium through restraint, and trust earned at every gate. A few moments from the journey.</p>
+  <p><strong>Earning trust before a cent moves.</strong> CGB's onboarding is heavier than a consumer app's by necessity, with bank connection, identity, and accreditation all up front. Rather than hide that weight, the screens explain it: Plaid is introduced with a plain-language rationale before it is ever invoked, and accreditation offers four clear routes to qualify. Every step states exactly what it needs and why.</p>
+  <div class="screens">
+    <figure><img src="images/cgb-screen-bank-intro.png" alt="Add bank account via Plaid, explained" loading="lazy"><figcaption>Add a bank - Plaid, explained plainly</figcaption></figure>
+    <figure><img src="images/cgb-screen-plaid-connect.png" alt="Connect with Plaid" loading="lazy"><figcaption>Connect with Plaid</figcaption></figure>
+    <figure><img src="images/cgb-screen-plaid-trust.png" alt="Why Plaid, the trust rationale" loading="lazy"><figcaption>The trust rationale, stated up front</figcaption></figure>
+    <figure><img src="images/cgb-screen-accreditation.png" alt="Accreditation qualification options" loading="lazy"><figcaption>Accreditation - four ways to qualify</figcaption></figure>
+  </div>
+  <p><strong>The hub.</strong> Past the gates, the dashboard carries everything at a glance: verification progress, total holdings, interest statistics, a rate-card breakdown, and recent activity with honest states - processed, pending, cancelled. Dense, but ordered. What you own and what it earns come first.</p>
+  <div class="shot-tall"><figure><img src="images/cgb-screen-dashboard.png" alt="The full CGB dashboard" loading="lazy"><figcaption>The full dashboard - verification, holdings, statistics, rates, and activity</figcaption></figure></div>
+  <p><strong>Investing, made legible.</strong> Whether buying a bond outright or setting up a recurring plan, the numbers stay on screen: amount at maturity, interest, rate, and total to pay update live, and a confirmation step restates the full commitment before anything is final. The calculator lets someone model a recurring plan before committing to one.</p>
+  <div class="screens">
+    <figure><img src="images/cgb-screen-customize-invest.png" alt="Customize your investment" loading="lazy"><figcaption>Customize your investment</figcaption></figure>
+    <figure><img src="images/cgb-screen-buy-bonds.png" alt="Buy Bonds with live maturity summary" loading="lazy"><figcaption>Buy Bonds - a live maturity summary</figcaption></figure>
+    <figure><img src="images/cgb-screen-confirm-purchase.png" alt="Confirm your purchase" loading="lazy"><figcaption>Confirm - restating the commitment</figcaption></figure>
+    <figure><img src="images/cgb-screen-calculator.png" alt="Recurring investment calculator" loading="lazy"><figcaption>Modelling a recurring plan</figcaption></figure>
+  </div>
+  <p><strong>Holding and exiting, without surprises.</strong> Deposits are listed with early-redemption built in, and breaking one early shows the penalty and the exact interest given up before the user confirms - the same see-the-math-first principle that defined CREB's withdraw flow, carried into a higher-stakes product.</p>
+  <div class="screens">
+    <figure><img src="images/cgb-screen-deposits.png" alt="All deposits with early redemption" loading="lazy"><figcaption>All deposits, with early-redemption access</figcaption></figure>
+    <figure><img src="images/cgb-screen-early-redemption.png" alt="Breaking a deposit early, penalty shown" loading="lazy"><figcaption>Breaking early - the cost shown before confirming</figcaption></figure>
+  </div></section>
+  <section class="sec reveal"><div class="label">Looking back</div><h2>Designing for a different kind of confidence</h2><p>CREB taught me to earn trust in small moments. CGB taught me that trust also lives in restraint and polish - that for a higher-stakes audience, calm and exactness <em>are</em> the value proposition. Designing it sharpened how I think about tone, density, and what "premium" actually means in an interface. It isn't decoration. It's care made visible, on every screen where someone decides to commit real money.</p></section>
+
+  <div class="end reveal">
+    <h2>Premium is<br><em>restraint.</em></h2>
+    <div class="row"><a href="index.html">← Back to all work</a><a href="3eco.html">Next: 3Eco Ops →</a><a href="mailto:kannal2242@gmail.com">Say hi</a></div>
+  </div>
+</div></main>
+<script>
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});},1400);
+</script>
+<script src="parallax.js" defer></script>
+</body>
+</html>

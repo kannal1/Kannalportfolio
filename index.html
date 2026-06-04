@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kannal Umayan, Product Designer</title>
+<meta name="description" content="Product designer at Compound. From ASP.NET engineer to product designer. CREB grew 400 to 2,000 users and $400k to $4M with a ~70% conversion lift." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700;800;900&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f5f5f5; --panel:#ffffff; --ink:#0b0c0e; --ink2:rgba(11,12,14,.6); --ink3:rgba(11,12,14,.58);
+    --line:rgba(11,12,14,.12); --line2:rgba(11,12,14,.2); --accent:#1f5cff;
+    --display:'Archivo Expanded','Geist',system-ui,sans-serif; --sans:'Geist',system-ui,sans-serif; --mono:'Geist Mono',monospace;
+    --ease:cubic-bezier(.2,.85,.25,1);
+    --card-bg:#ffffff;
+    --card-shadow:0px 0.7px 0.7px -0.67px rgba(0,0,0,.08),0px 1.8px 1.8px -1.33px rgba(0,0,0,.08),0px 3.6px 3.6px -2px rgba(0,0,0,.07),0px 6.9px 6.9px -2.67px rgba(0,0,0,.07),0px 13.6px 13.6px -3.33px rgba(0,0,0,.05),0px 30px 30px -4px rgba(0,0,0,.02),inset 0px 3px 1px 0px rgba(255,255,255,1);
+    --pill-shadow:0px 0.7px 0.7px -0.67px rgba(0,0,0,.08),0px 1.8px 1.8px -1.33px rgba(0,0,0,.08),0px 3.6px 3.6px -2px rgba(0,0,0,.07),inset 0px 2px 1px 0px rgba(255,255,255,1);
+
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:#1f5cff;color:#fff;}
+
+
+  /* glitch effect triggered on mouse move over hero */
+  canvas#birds.glitch{animation:glitchAnim .25s steps(2) 1;}
+  @keyframes glitchAnim{
+    0%{filter:none;transform:translate(0,0);}
+    20%{filter:drop-shadow(2px 0 #1f5cff) drop-shadow(-2px 0 #ff3b3b);transform:translate(-2px,1px);}
+    40%{filter:drop-shadow(-3px 0 #1f5cff) drop-shadow(3px 0 #ff3b3b);transform:translate(2px,-1px);}
+    60%{filter:drop-shadow(2px 0 #1f5cff) drop-shadow(-2px 0 #ff3b3b);transform:translate(-1px,1px);}
+    100%{filter:none;transform:translate(0,0);}
+  }
+  canvas#birds{position:fixed;top:0;left:0;width:100%;height:100svh;z-index:0;pointer-events:none;}
+  .herofade{position:fixed;top:0;left:0;right:0;height:100svh;z-index:1;pointer-events:none;
+    background:radial-gradient(60% 50% at 50% 42%,rgba(244,244,241,.4),rgba(244,244,241,.85) 78%,var(--bg) 100%);}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,56px);}
+  nav .brand{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;}
+  nav .links{display:flex;gap:26px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+  nav .links a{opacity:.6;transition:opacity .3s;} nav .links a:hover{opacity:1;}
+
+  .wrap{position:relative;z-index:10;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px);}
+
+  /* hero */
+  .hero{position:relative;z-index:10;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .hero .tag{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);margin-bottom:26px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
+  .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,68px);line-height:1.02;letter-spacing:-.02em;text-transform:uppercase;max-width:22ch;opacity:0;animation:fadeUp .9s var(--ease) .35s forwards;}
+  .hero h1 .x{display:inline-block;color:var(--accent);margin:0 .1em;}
+  .hero p{margin-top:24px;max-width:440px;font-size:15px;line-height:1.6;color:var(--ink2);opacity:0;animation:fadeUp .9s var(--ease) .6s forwards;}
+  .hero .btn{margin-top:34px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:14px 30px;background:var(--ink);color:#fff;transition:all .35s var(--ease);opacity:0;animation:fadeUp .9s var(--ease) .8s forwards;}
+  .hero .btn:hover{background:#2b2c30;}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+  .hero .tag,.hero h1,.hero p,.hero .btn{transform:translateY(16px);}
+
+  /* specialization line */
+  .spec{position:relative;z-index:10;padding:clamp(80px,14vh,180px) 0;text-align:center;}
+  .spec .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:30px;}
+  .spec h2{font-family:var(--display);font-weight:700;font-size:clamp(22px,3.4vw,42px);line-height:1.3;letter-spacing:-.01em;max-width:24ch;margin:0 auto;text-transform:uppercase;}
+  .spec h2 b{color:var(--accent);}
+
+  /* client strip */
+  .clients{position:relative;z-index:10;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .clients .inner{max-width:1240px;margin:0 auto;padding:30px clamp(20px,5vw,56px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center;font-family:var(--mono);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);}
+
+  /* work label */
+  .worklabel{position:relative;z-index:10;text-align:center;padding:clamp(70px,11vh,140px) 0 20px;font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,64px);text-transform:uppercase;letter-spacing:-.02em;}
+  .worklabel b{color:var(--ink);}
+
+  /* project blocks: big screenshot + side text, alternating */
+  .proj{position:relative;z-index:10;max-width:1240px;margin:0 auto;padding:clamp(40px,7vh,90px) clamp(20px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:center;}
+  .proj.flip .shot{order:2;}
+  .proj .shot{position:relative;border-radius:6px;overflow:hidden;background:var(--panel);border:1px solid var(--line);}
+  .proj .shot img{width:100%;display:block;}
+  .proj .info .k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  .proj .info h3{font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,40px);text-transform:uppercase;letter-spacing:-.01em;line-height:1.04;margin-bottom:16px;}
+  .proj .info p{font-size:15px;line-height:1.65;color:var(--ink2);max-width:42ch;margin-bottom:24px;}
+  .proj .info .view{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;border-bottom:1px solid var(--ink);padding-bottom:5px;transition:gap .3s,border-color .3s;}
+  .proj .info .view:hover{gap:16px;border-color:var(--ink);color:var(--ink);}
+
+  /* bottom three-column section */
+  .cols{position:relative;z-index:10;max-width:1240px;margin:0 auto;padding:clamp(70px,11vh,140px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(30px,5vw,64px);border-top:1px solid var(--line);}
+  .cols .col h4{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:26px;}
+  .cols .col .item{margin-bottom:26px;}
+  .cols .col .item .role{font-family:var(--display);font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:-.01em;}
+  .cols .col .item .meta{font-family:var(--mono);font-size:11px;color:var(--ink3);margin:6px 0 8px;letter-spacing:.04em;}
+  .cols .col .item .desc{font-size:14px;line-height:1.6;color:var(--ink2);}
+
+  /* giant name */
+  .bigname{position:relative;z-index:10;text-align:center;padding:clamp(30px,6vh,70px) 10px clamp(20px,4vh,40px);overflow:hidden;}
+  .bigname span{font-family:var(--display);font-weight:900;font-size:clamp(48px,17vw,260px);letter-spacing:-.03em;line-height:.9;text-transform:uppercase;display:block;}
+  .footnote{position:relative;z-index:10;text-align:center;padding-bottom:50px;font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.04em;}
+  .footnote a{color:var(--ink2);border-bottom:1px solid transparent;transition:border-color .3s;}
+  .footnote a:hover{border-color:#1f5cff;}
+
+
+  /* film grain over white (subtle dark speckle) */
+  .fx-grain{position:fixed;inset:0;z-index:55;pointer-events:none;opacity:.06;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grainShift .6s steps(2) infinite;}
+  @keyframes grainShift{0%{transform:translate(0,0);}100%{transform:translate(-6px,4px);}}
+  /* drifting light blooms */
+  .fx-blooms{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden;}
+  .fx-blooms i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;mix-blend-mode:multiply;}
+  .fx-blooms i:nth-child(1){width:340px;height:340px;left:12%;top:8%;background:radial-gradient(circle,rgba(31,92,255,.16),transparent 70%);animation:bloom1 18s ease-in-out infinite alternate;}
+  .fx-blooms i:nth-child(2){width:300px;height:300px;right:14%;top:14%;background:radial-gradient(circle,rgba(11,12,14,.06),transparent 70%);animation:bloom2 22s ease-in-out infinite alternate;}
+  .fx-blooms i:nth-child(3){width:260px;height:260px;left:46%;top:2%;background:radial-gradient(circle,rgba(11,12,14,.05),transparent 70%);animation:bloom3 26s ease-in-out infinite alternate;}
+  @keyframes bloom1{to{transform:translate(40px,30px) scale(1.2);}}
+  @keyframes bloom2{to{transform:translate(-50px,40px) scale(1.15);}}
+  @keyframes bloom3{to{transform:translate(20px,-30px) scale(1.25);}}
+  /* shimmer sweep across the giant name */
+  .bigname span{background:linear-gradient(100deg,var(--ink) 0%,var(--ink) 38%,#9bb4ff 47%,#fff 50%,#9bb4ff 53%,var(--ink) 62%,var(--ink) 100%);
+    background-size:280% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:sheen 6s linear infinite;}
+  @keyframes sheen{0%{background-position:180% 0;}100%{background-position:-80% 0;}}
+
+  /* story */
+  .story{position:relative;z-index:10;padding:clamp(70px,11vh,140px) clamp(20px,5vw,56px);}
+  .story-k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:40px;text-align:center;}
+  .story-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,44px);}
+  .story-step .n{font-family:var(--mono);font-size:13px;color:#1f5cff;margin-bottom:16px;}
+  .story-step h3{font-family:var(--display);font-weight:700;font-size:clamp(17px,1.6vw,21px);text-transform:uppercase;letter-spacing:-.01em;line-height:1.15;margin-bottom:12px;}
+  .story-step p{font-size:14px;line-height:1.65;color:var(--ink2);}
+  @media (max-width:820px){ .story-grid{grid-template-columns:1fr 1fr;gap:30px;} }
+  @media (max-width:520px){ .story-grid{grid-template-columns:1fr;} }
+
+
+  /* play section */
+  .play{position:relative;z-index:10;padding:clamp(50px,8vh,100px) clamp(20px,5vw,56px);}
+  .play-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:14px;margin-bottom:34px;}
+  .play-head h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.5vw,56px);text-transform:uppercase;letter-spacing:-.01em;}
+  .play-head .meta{font-family:var(--mono);font-size:12px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;}
+  .play-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .play-piece{position:relative;border-radius:6px;overflow:hidden;background:var(--panel);border:1px solid var(--line);transition:transform .4s var(--ease);}
+  .play-piece:hover{transform:translateY(-6px);}
+  .play-piece video{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;background:#e9e9e6;}
+  .play-piece figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);padding:14px 16px;border-top:1px solid var(--line);}
+  @media (max-width:820px){ .play-grid{grid-template-columns:1fr;} }
+
+  .reveal-l{opacity:0;transform:translateX(-60px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+  .reveal-r{opacity:0;transform:translateX(60px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+  .reveal-u{opacity:0;transform:translateY(60px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+  .reveal-l.in,.reveal-r.in,.reveal-u.in{opacity:1;transform:none;}
+
+  /* neumorphic surfaces (from design system) */
+  .proj .shot{border-radius:20px;background:var(--card-bg);box-shadow:var(--card-shadow);border:1px solid rgba(0,0,0,.06);overflow:hidden;}
+  .play-piece{border-radius:20px;background:var(--card-bg);box-shadow:var(--card-shadow);border:1px solid rgba(0,0,0,.06);}
+  .play-piece figcaption{border-top:1px solid rgba(0,0,0,.06);}
+  .story-step{background:var(--card-bg);border-radius:20px;box-shadow:var(--card-shadow);border:1px solid rgba(0,0,0,.06);padding:26px 24px;}
+  .cols .col{background:var(--card-bg);border-radius:20px;box-shadow:var(--card-shadow);border:1px solid rgba(0,0,0,.06);padding:30px 26px;}
+  /* glassmorphic nav + eyebrow pill */
+  nav{backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);background:rgba(245,245,245,.4);border-bottom:1px solid rgba(255,255,255,.3);mix-blend-mode:normal;}
+  .hero .tag{display:inline-block;border-radius:999px;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.5);padding:8px 16px;box-shadow:var(--pill-shadow);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+  .hero .btn{border-radius:16px;}
+
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (max-width:820px){
+    nav{padding:16px 20px;}
+    nav .links{gap:15px;font-size:11px;}
+    nav .links a.ext{display:none;}
+    .proj{grid-template-columns:1fr;gap:24px;} .proj.flip .shot{order:0;}
+    .cols{grid-template-columns:1fr;gap:40px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;} .reveal{opacity:1;transform:none;} .hero .tag,.hero h1,.hero p,.hero .btn{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+
+<canvas id="birds"></canvas>
+<div class="herofade"></div>
+<div class="fx-blooms"><i></i><i></i><i></i></div>
+<div class="fx-grain"></div>
+
+
+<nav>
+  <span class="brand">Kannal Umayan</span>
+  <div class="links"><a href="resume.html">CV</a><a href="#work">Work</a><a href="#play">Play</a><a href="https://www.linkedin.com/in/kannal-umayan-809120235" target="_blank" rel="noopener" class="ext">LinkedIn</a><a href="mailto:kannal2242@gmail.com" class="cta">Mail</a></div>
+</nav>
+
+<header class="hero">
+  <div class="tag">Product Designer, Compound, Bengaluru</div>
+  <h1>I used to build software.<br>Now I design fintech.</h1>
+  <p>I work on consumer fintech and wealth at Compound. Coming from engineering, I design for the moment a product asks someone to trust it with their money, and try to make that moment feel safe.</p>
+  <a href="mailto:kannal2242@gmail.com" class="btn">Write to me</a>
+</header>
+
+<section class="spec reveal">
+  <div class="eyebrow">Consumer fintech · Wealth · Design systems</div>
+  <h2>I focus on <b>consumer fintech</b>, <b>wealth products</b>, and the <b>design systems</b> that hold them together, turning complex, high-stakes money flows into screens people actually understand.</h2>
+</section>
+
+<div class="clients reveal">
+  <div class="inner"><span>Compound</span><span>Fibonalabs</span><span>Bigdbiz</span><span>CREB</span><span>Gold Bonds</span><span>3Eco</span></div>
+</div>
+
+<section class="story wrap reveal-u" id="story">
+  <div class="story-k">The journey</div>
+  <div class="story-grid">
+    <div class="story-step"><div class="n">01</div><h3>I started in code</h3><p>My first roles were in software, testing systems and then building them as an ASP.NET developer at Bigdbiz. I learned how products are really made, and where they quietly fail the people using them.</p></div>
+    <div class="story-step"><div class="n">02</div><h3>Curiosity pulled me upstream</h3><p>I kept asking why we were building what we built, and for whom. The questions upstream of the code, research, strategy, the experience itself, pulled me toward design.</p></div>
+    <div class="story-step"><div class="n">03</div><h3>I learned UX properly</h3><p>B2B design work at Fibonalabs taught me research, systems thinking, and how to design for complex, real-world operational workflows.</p></div>
+    <div class="story-step"><div class="n">04</div><h3>Now I build products</h3><p>At Compound I design fintech and wealth products end to end, an engineer who designs, fluent on both sides of the handoff.</p></div>
+  </div>
+</section>
+
+<div class="worklabel reveal">Selected fintech work</div>
+
+<section class="proj reveal-l" id="work">
+  <a class="shot" href="creb.html"><img src="images/creb-hero.png" alt="Compound Real Estate Bonds" loading="lazy"></a>
+  <div class="info">
+    <div class="k">Consumer Fintech, 2024</div>
+    <h3>Compound Real Estate Bonds</h3>
+    <p>Rebuilt a leaking funnel around trust. 400 to 2,000 investors, $400k to $4M held, ~70% more reaching first purchase.</p>
+    <a class="view" href="creb.html">View case →</a>
+  </div>
+</section>
+
+<section class="proj flip reveal-r">
+  <a class="shot" href="cgb.html"><img src="images/cgb-hero.png" alt="Compound Gold Bonds" loading="lazy"></a>
+  <div class="info">
+    <div class="k">Wealth, 2025</div>
+    <h3>Compound Gold Bonds</h3>
+    <p>A premium wealth product for accredited investors. New audience, new brand, every screen designed from scratch.</p>
+    <a class="view" href="cgb.html">View case →</a>
+  </div>
+</section>
+
+<section class="proj reveal-l">
+  <a class="shot" href="3eco.html"><img src="images/3eco-hero.png" alt="3Eco Delivery Operations" loading="lazy"></a>
+  <div class="info">
+    <div class="k">B2B Operations, 2023</div>
+    <h3>3Eco Delivery Operations</h3>
+    <p>One platform, four very different users, coordinators, drivers, compliance, admins, each on its own purpose-built surface.</p>
+    <a class="view" href="3eco.html">View case →</a>
+  </div>
+</section>
+
+<section class="proj flip reveal-r">
+  <a class="shot" href="ola.html"><img src="images/ola-card.png" alt="Ola Scooter Cluster UI" loading="lazy"></a>
+  <div class="info">
+    <div class="k">Motion, Side Project, 2024</div>
+    <h3>Ola Scooter Cluster UI</h3>
+    <p>A rider dashboard built to be read in half a second, in motion, in sunlight. A self-directed exploration.</p>
+    <a class="view" href="ola.html">View case →</a>
+  </div>
+</section>
+
+<section class="play wrap reveal-u" id="play">
+  <div class="play-head">
+    <h2>Play</h2>
+    <div class="meta">Motion & interaction studies</div>
+  </div>
+  <div class="play-grid">
+    <figure class="play-piece">
+      <video src="videos/play-car-ui.mp4" poster="images/play-car-ui-poster.jpg" autoplay muted loop playsinline></video>
+      <figcaption>Connected Car Cluster</figcaption>
+    </figure>
+    <figure class="play-piece">
+      <video src="videos/play-dynamic-island.mp4" poster="images/play-dynamic-island-poster.jpg" autoplay muted loop playsinline></video>
+      <figcaption>Dynamic Island Pay</figcaption>
+    </figure>
+    <figure class="play-piece">
+      <video src="videos/play-mountains.mp4" poster="images/play-mountains-poster.jpg" autoplay muted loop playsinline></video>
+      <figcaption>Mountains, Biome Selection</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="cols reveal-u">
+  <div class="col">
+    <h4>Experience</h4>
+    <div class="item"><div class="role">Product Designer</div><div class="meta">Compound, 2024 - Present</div><div class="desc">Designing CREB and Gold Bonds, consumer fintech and wealth, end to end.</div></div>
+    <div class="item"><div class="role">Product Designer</div><div class="meta">Fibonalabs, 2022 - 2024</div><div class="desc">B2B design across complex operational platforms; research, systems, delivery.</div></div>
+    <div class="item"><div class="role">ASP.NET Developer</div><div class="meta">Bigdbiz, earlier</div><div class="desc">Shipped production software; learned how products are really built.</div></div>
+  </div>
+  <div class="col">
+    <h4>Skills</h4>
+    <div class="item"><div class="role">UI & UX</div><div class="desc">Information clarity, data, and interaction for products that move money.</div></div>
+    <div class="item"><div class="role">Design Systems</div><div class="desc">Building and maintaining scalable component systems.</div></div>
+    <div class="item"><div class="role">Research & Strategy</div><div class="desc">Turning user and market insight into product direction.</div></div>
+    <div class="item"><div class="role">Engineering fluency</div><div class="desc">.NET background; comfortable across the design-to-code handoff.</div></div>
+  </div>
+  <div class="col">
+    <h4>Personal Projects</h4>
+    <div class="item"><div class="role">Ola Cluster UI</div><div class="desc">A glanceable rider dashboard concept for an electric scooter.</div></div>
+    <div class="item"><div class="role">This portfolio</div><div class="desc">Designed and built by hand, animated flocking hero included.</div></div>
+  </div>
+</section>
+
+<div class="bigname"><span>Kannal</span></div>
+<div class="footnote">Designed and built by Kannal Umayan, Bengaluru, 2025 · <a href="mailto:kannal2242@gmail.com">kannal2242@gmail.com</a></div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+<script type="module">
+  import * as THREE from 'three';
+  import { GPUComputationRenderer } from 'three/addons/misc/GPUComputationRenderer.js';
+
+  /* GPGPU boids flocking, adapted from the three.js webgl_gpgpu_birds example,
+     tuned for a light background (dark birds). */
+  const WIDTH=32, BIRDS=WIDTH*WIDTH;
+  const canvas=document.getElementById('birds');
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  function size(){ renderer.setSize(innerWidth, innerHeight); }
+  size();
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,1,3000); camera.position.z=350;
+
+  let last=performance.now();
+  const BOUNDS=800, BOUNDS_HALF=BOUNDS/2;
+
+  // bird geometry (triangle body) packed for instancing via vertex birdIndex
+  function BirdGeometry(){
+    const g=new THREE.BufferGeometry();
+    const trianglesPerBird=3, triangles=BIRDS*trianglesPerBird, points=triangles*3;
+    const vertices=new THREE.BufferAttribute(new Float32Array(points*3),3);
+    const birdColors=new THREE.BufferAttribute(new Float32Array(points*3),3);
+    const references=new THREE.BufferAttribute(new Float32Array(points*2),2);
+    const birdVertex=new THREE.BufferAttribute(new Float32Array(points),1);
+    g.setAttribute('position',vertices); g.setAttribute('birdColor',birdColors);
+    g.setAttribute('reference',references); g.setAttribute('birdVertex',birdVertex);
+    let v=0; function verts_push(){ for(let i=0;i<arguments.length;i++){ vertices.array[v++]=arguments[i]; } }
+    const wingsSpan=20;
+    for(let f=0;f<BIRDS;f++){
+      // body
+      verts_push(0,-0,-20, 0,4,-20, 0,0,30);
+      // left wing
+      verts_push(0,0,-15, -wingsSpan,0,0, 0,0,15);
+      // right wing
+      verts_push(0,0,15, wingsSpan,0,0, 0,0,-15);
+    }
+    for(let i=0;i<triangles*3;i++){
+      const bird=Math.floor(i/trianglesPerBird/3);
+      const x=(bird%WIDTH)/WIDTH, y=Math.floor(bird/WIDTH)/WIDTH;
+      // dark birds for the light bg, slight blue tint
+      const c=0.04+0.06*Math.random();
+      birdColors.array[i*3]=c; birdColors.array[i*3+1]=c; birdColors.array[i*3+2]=c+0.04;
+      references.array[i*2]=x; references.array[i*2+1]=y;
+      birdVertex.array[i]=i%9;
+    }
+    g.scale(0.2,0.2,0.2);
+    return g;
+  }
+
+  // shaders
+  const birdVS=`attribute vec2 reference; attribute float birdVertex; attribute vec3 birdColor;
+    uniform sampler2D texturePosition; uniform sampler2D textureVelocity; uniform float time;
+    varying vec3 vColor; varying float z;
+    void main(){
+      vec4 tmpPos=texture2D(texturePosition,reference);
+      vec3 pos=tmpPos.xyz; vec3 vel=texture2D(textureVelocity,reference).xyz;
+      vec3 newPosition=position;
+      // flap wings based on vertex + time
+      if(birdVertex==4.0||birdVertex==7.0){ newPosition.y=sin(time*40.0+ tmpPos.w)*5.0; }
+      // orient toward velocity
+      newPosition=mat3(1.0,0.0,0.0, 0.0,1.0,0.0, 0.0,0.0,1.0)*newPosition;
+      vec3 dir=normalize(vel);
+      vec3 up=vec3(0,1,0); vec3 xaxis=normalize(cross(up,dir)); vec3 yaxis=cross(dir,xaxis);
+      mat3 rot=mat3(xaxis,yaxis,dir);
+      newPosition=rot*newPosition;
+      newPosition+=pos;
+      vColor=birdColor; z=newPosition.z;
+      gl_Position=projectionMatrix*modelViewMatrix*vec4(newPosition,1.0);
+    }`;
+  const birdFS=`varying vec3 vColor; varying float z;
+    void main(){ float fade=clamp((z+200.0)/400.0,0.4,1.0); gl_FragColor=vec4(vColor, 0.9*fade); }`;
+
+  const gpu=new GPUComputationRenderer(WIDTH,WIDTH,renderer);
+  const dtPosition=gpu.createTexture(), dtVelocity=gpu.createTexture();
+  (function fill(){
+    const pos=dtPosition.image.data, vel=dtVelocity.image.data;
+    for(let i=0;i<pos.length;i+=4){
+      pos[i]=Math.random()*BOUNDS-BOUNDS_HALF; pos[i+1]=Math.random()*BOUNDS-BOUNDS_HALF; pos[i+2]=Math.random()*BOUNDS-BOUNDS_HALF; pos[i+3]=1;
+      vel[i]=(Math.random()-.5)*10; vel[i+1]=(Math.random()-.5)*10; vel[i+2]=(Math.random()-.5)*10; vel[i+3]=1;
+    }
+  })();
+
+  const velShader=`uniform float time; uniform float delta;
+    void main(){
+      vec2 uv=gl_FragCoord.xy/resolution.xy;
+      vec3 pos=texture2D(texturePosition,uv).xyz; vec3 vel=texture2D(textureVelocity,uv).xyz;
+      float dist; vec3 dir;
+      // center pull
+      dir=-pos; dist=length(dir); vel+=normalize(dir)*delta*(dist*0.0008);
+      // flock: separation + alignment (sampled subset)
+      float w=resolution.x;
+      for(float y=0.0;y<32.0;y++){ for(float x=0.0;x<32.0;x++){
+        vec2 ref=vec2(x+0.5,y+0.5)/resolution.xy; vec3 bp=texture2D(texturePosition,ref).xyz; vec3 bv=texture2D(textureVelocity,ref).xyz;
+        vec3 d=bp-pos; float dl=length(d);
+        if(dl>0.0001 && dl<40.0){ vel-=normalize(d)*delta*(1.0-dl/40.0)*8.0; }      // separation
+        else if(dl<120.0){ vel+=bv*delta*0.06; }                                    // alignment/cohesion
+      }}
+      // speed clamp
+      float sp=length(vel); if(sp>60.0) vel=normalize(vel)*60.0; if(sp<20.0) vel=normalize(vel)*20.0;
+      // bounds bounce
+      if(pos.x> 400.0)vel.x-=delta*30.0; if(pos.x<-400.0)vel.x+=delta*30.0;
+      if(pos.y> 300.0)vel.y-=delta*30.0; if(pos.y<-300.0)vel.y+=delta*30.0;
+      if(pos.z> 400.0)vel.z-=delta*30.0; if(pos.z<-400.0)vel.z+=delta*30.0;
+      gl_FragColor=vec4(vel,1.0);
+    }`;
+  const posShader=`uniform float time; uniform float delta;
+    void main(){ vec2 uv=gl_FragCoord.xy/resolution.xy; vec4 tmp=texture2D(texturePosition,uv); vec3 pos=tmp.xyz; vec3 vel=texture2D(textureVelocity,uv).xyz;
+      float phase=tmp.w; phase=mod(phase+delta+length(vel)*delta*3.0,62.83);
+      gl_FragColor=vec4(pos+vel*delta*1.0, phase); }`;
+
+  const velVar=gpu.addVariable('textureVelocity',velShader,dtVelocity);
+  const posVar=gpu.addVariable('texturePosition',posShader,dtPosition);
+  gpu.setVariableDependencies(velVar,[posVar,velVar]);
+  gpu.setVariableDependencies(posVar,[posVar,velVar]);
+  velVar.material.uniforms.time={value:0}; velVar.material.uniforms.delta={value:0};
+  posVar.material.uniforms.time={value:0}; posVar.material.uniforms.delta={value:0};
+  const gerr=gpu.init(); if(gerr) console.error(gerr);
+
+  const birdUniforms={ texturePosition:{value:null}, textureVelocity:{value:null}, time:{value:1} };
+  const birdMat=new THREE.ShaderMaterial({uniforms:birdUniforms,vertexShader:birdVS,fragmentShader:birdFS,side:THREE.DoubleSide,transparent:true});
+  const birdMesh=new THREE.Mesh(BirdGeometry(),birdMat); birdMesh.rotation.y=Math.PI/2; scene.add(birdMesh);
+
+
+  let mx=0,my=0,mxc=0,myc=0;
+  addEventListener('pointermove',e=>{ mx=(e.clientX/innerWidth-.5); my=(e.clientY/innerHeight-.5); },{passive:true});
+  addEventListener('resize',()=>{ size(); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); });
+
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function animate(){
+    if(!reduceMotion) requestAnimationFrame(animate);
+    const now=performance.now(); let delta=(now-last)/1000; if(delta>0.5)delta=0.5; last=now;
+    const t=now*0.001;
+    velVar.material.uniforms.time.value=t; velVar.material.uniforms.delta.value=delta;
+    posVar.material.uniforms.time.value=t; posVar.material.uniforms.delta.value=delta;
+    birdUniforms.time.value=t;
+    gpu.compute();
+    birdUniforms.texturePosition.value=gpu.getCurrentRenderTarget(posVar).texture;
+    birdUniforms.textureVelocity.value=gpu.getCurrentRenderTarget(velVar).texture;
+    // weightless cinematic camera drift + mouse parallax
+    mxc += (mx*60 - mxc)*0.04; myc += (-my*40 - myc)*0.04;
+    camera.position.x = mxc + Math.sin(t*0.18)*10;
+    camera.position.y = myc + Math.cos(t*0.15)*8;
+    camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+  }
+  animate();
+
+
+  // glitch pulse on mouse move over the hero birds
+  (function(){
+    var birds=document.getElementById('birds'); var lastG=0;
+    addEventListener('pointermove',function(e){
+      if(e.clientY>innerHeight) return;            // only in hero region
+      var now=performance.now(); if(now-lastG<260) return; lastG=now;
+      birds.classList.remove('glitch'); void birds.offsetWidth; birds.classList.add('glitch');
+    },{passive:true});
+  })();
+
+  // scroll reveal for the page content
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal, .reveal-l, .reveal-r, .reveal-u').forEach(el=>io.observe(el));
+  setTimeout(()=>document.querySelectorAll('.reveal, .reveal-l, .reveal-r, .reveal-u').forEach(el=>el.classList.add('in')),1500);
+
+</script>
+<script src="parallax.js" defer></script>
+</body>
+</html>

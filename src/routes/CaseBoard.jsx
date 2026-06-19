@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { caseNodeTypes } from '../nodes/CaseNodes'
 import ParallaxBg from '../components/ParallaxBg'
 import Lightbox from '../components/Lightbox'
+import FastZoom from '../lib/FastZoom'
 import { flowProps } from '../lib/flowProps'
 import { byId, projects } from '../data/projects'
 import { caseStudies } from '../data/caseStudies'
@@ -149,6 +150,7 @@ function Board({ project, story }) {
         nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange}
         nodeTypes={caseNodeTypes}
         fitView fitViewOptions={{ padding: 0.5 }} className="rf-root">
+        <FastZoom min={flowProps.minZoom} max={flowProps.maxZoom} />
         <ParallaxBg accent={project.accent} />
         <Background color="#1c1c22" gap={30} size={1.4} />
         <Controls showInteractive={false} position="bottom-right" />

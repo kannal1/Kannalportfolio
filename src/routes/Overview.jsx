@@ -7,6 +7,7 @@ import {
 import { motion } from 'framer-motion'
 import { nodeTypes } from '../nodes/Nodes'
 import ParallaxBg from '../components/ParallaxBg'
+import FastZoom from '../lib/FastZoom'
 import { flowProps } from '../lib/flowProps'
 import { identity, approach, about, projects } from '../data/projects'
 
@@ -63,6 +64,7 @@ function Board() {
       nodes={nodes} edges={edges} onNodesChange={onNodesChange} onEdgesChange={onEdgesChange}
       nodeTypes={nodeTypes} fitView fitViewOptions={{ padding: 0.16 }}
       className="rf-root">
+      <FastZoom min={flowProps.minZoom} max={flowProps.maxZoom} />
       <ParallaxBg accent="#FF2E3A" />
       <Background color="#1c1c22" gap={28} size={1.5} />
       <Controls showInteractive={false} position="bottom-right" />
@@ -80,7 +82,6 @@ export default function Overview() {
         <div className="brand"><span className="b-dot" />Kannal Umayan</div>
         <span className="hint">Drag to pan · scroll to zoom · click a case to enter its board</span>
         <div className="chrome-actions">
-          <a className="chip" href="/scroll.html" data-cursor="READ">Scroll view</a>
           <a className="chip solid" href={`mailto:${identity.email}`} data-cursor="HI">Let’s talk</a>
         </div>
       </div>

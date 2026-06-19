@@ -7,7 +7,7 @@ export const flowProps = {
   panOnScroll: true,
   panOnScrollSpeed: 0.5,
   zoomOnScroll: false,
-  zoomOnPinch: true,
+  zoomOnPinch: false, // handled by <FastZoom/> for Figma-speed zoom
   zoomOnDoubleClick: false,
   preventScrolling: true,
   panOnDrag: true,

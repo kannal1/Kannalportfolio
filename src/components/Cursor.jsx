@@ -1,46 +1,29 @@
 import { useEffect, useRef } from 'react'
 
-// Figma-style labeled cursor. Follows pointer on rAF; reads [data-cursor] for
-// its label and interactive targets for hover. Hidden on touch via CSS.
+// Difference-blend dot that swells into a labelled disc over interactive things.
 export default function Cursor() {
-  const ring = useRef(null)
   const dot = useRef(null)
   const label = useRef(null)
-
   useEffect(() => {
-    if (window.matchMedia('(pointer:coarse)').matches) return
-    const r = ring.current, d = dot.current, l = label.current
-    let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y, raf
-
+    if (matchMedia('(pointer:coarse)').matches) return
+    const d = dot.current, l = label.current
+    let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y, raf
     const loop = () => {
-      rx += (x - rx) * 0.2; ry += (y - ry) * 0.2
-      r.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`
-      d.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%)`
+      cx += (x - cx) * 0.22; cy += (y - cy) * 0.22
+      d.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`
       raf = requestAnimationFrame(loop)
     }
     loop()
-
     const move = (e) => {
       x = e.clientX; y = e.clientY
       const t = e.target.closest('[data-cursor]')
-      const hot = e.target.closest('a,button,[data-cursor],.react-flow__node')
-      if (t) { r.classList.add('label'); r.classList.remove('hover'); l.textContent = t.getAttribute('data-cursor') }
-      else if (hot) { r.classList.add('hover'); r.classList.remove('label') }
-      else { r.classList.remove('hover', 'label') }
+      const hot = e.target.closest('a,button,[data-cursor]')
+      if (t) { d.classList.add('big'); l.textContent = t.getAttribute('data-cursor') }
+      else if (hot) { d.classList.add('big'); l.textContent = '' }
+      else d.classList.remove('big')
     }
-    const down = () => r.classList.add('down')
-    const up = () => r.classList.remove('down')
-    addEventListener('pointermove', move); addEventListener('pointerdown', down); addEventListener('pointerup', up)
-    return () => {
-      cancelAnimationFrame(raf)
-      removeEventListener('pointermove', move); removeEventListener('pointerdown', down); removeEventListener('pointerup', up)
-    }
+    addEventListener('pointermove', move)
+    return () => { cancelAnimationFrame(raf); removeEventListener('pointermove', move) }
   }, [])
-
-  return (
-    <>
-      <div className="cursor" ref={ring}><span className="clabel" ref={label} /></div>
-      <div className="cursor-dot" ref={dot} />
-    </>
-  )
+  return <div className="cursor" ref={dot}><span className="clabel" ref={label} /></div>
 }

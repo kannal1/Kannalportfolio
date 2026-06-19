@@ -50,7 +50,7 @@ function frame(file, project, label) {
   else if (ar < 1.25) { kind = 'card'; w = 360 }
   else if (ar < 1.9) { kind = 'wide'; w = 600 }
   else { kind = 'pano'; w = 760 }
-  return { src: `/images/${file}`, kind, w, h: Math.round(w / ar), ar, caption: label || cap(file, project) }
+  return { src: `/images/${file}`, kind, w, h: Math.round(w / ar), ar, dim: `${d.w} × ${d.h}`, caption: label || cap(file, project) }
 }
 
 // build a project's grouped frames
@@ -63,7 +63,7 @@ function build(project, groups) {
 
 export const projects = [
   {
-    id: 'creb', no: '01', accent: '#FF2E3A', accent2: '#FF505A',
+    id: 'creb', no: '01', accent: '#2C5F7C', accent2: '#E2E8EC',
     name: 'Compound Real Estate Bonds',
     short: 'Real Estate Bonds',
     tags: 'Consumer fintech · Compound · since 2024',
@@ -83,7 +83,7 @@ export const projects = [
     ]),
   },
   {
-    id: 'cgb', no: '02', accent: '#E0A53B', accent2: '#F4C45F',
+    id: 'cgb', no: '02', accent: '#A24A33', accent2: '#F2E5E0',
     name: 'Compound Gold Bonds',
     short: 'Gold Bonds',
     tags: 'Premium fintech · Compound · 2025',
@@ -103,7 +103,7 @@ export const projects = [
     ]),
   },
   {
-    id: '3eco', no: '03', accent: '#2FB6A6', accent2: '#54D6C6',
+    id: '3eco', no: '03', accent: '#3D6B4E', accent2: '#E4ECE6',
     name: '3Eco: one platform, four users',
     short: 'one platform, four users',
     tags: 'B2B operations · Fibonalabs',
@@ -121,7 +121,7 @@ export const projects = [
     ]),
   },
   {
-    id: 'ola', no: '04', accent: '#7CE38B', accent2: '#A6F0B0',
+    id: 'ola', no: '04', accent: '#9A6A24', accent2: '#F0E8D8',
     name: 'Ola: read at 60 km/h',
     short: 'read at 60 km/h',
     tags: 'Automotive UI · Ola',

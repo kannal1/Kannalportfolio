@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Ola, Scooter Cluster UI · Kannal Umayan</title>
+<meta name="description" content="A scooter instrument cluster built for the half-second glance. Speed and range first, with motion used as a safety feature."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230B0B0D'/%3E%3Crect x='9' y='9' width='14' height='14' fill='%23FF2E3A'/%3E%3C/svg%3E"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="vendor/lenis.css"/>
+<link rel="stylesheet" href="case.css"/>
+  <noscript><style>
+    [data-reveal],[data-reveal-words] .w,.rv,.reveal-shot{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+    .pageveil{display:none!important}
+  </style></noscript>
+</head>
+<body data-acc="#FF2E3A">
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="clabel" id="clabel"></span></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="nav" id="nav">
+  <a href="index.html#work" class="nav-back" data-mag>← All work</a>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-id"><span class="nav-dot"></span>Kannal Umayan</a>
+    <a class="nav-cta" href="mailto:kannal2242@gmail.com" data-mag>Let's talk</a>
+  </nav>
+</header>
+<main>
+  <section class="cs-hero">
+    <div class="cs-eyebrow"><span class="pip"></span>AUTOMOTIVE UI · OLA</div>
+    <h1 class="cs-h1" data-reveal-words>Ola: read at <span class="serif">60 km/h.</span></h1>
+    <p class="cs-lead" data-reveal>A scooter instrument cluster built for the half-second glance.
+    Speed and range first; everything else recedes. <b>Motion as a safety feature, not a flourish.</b></p>
+    <div class="cs-meta" data-reveal>
+      <div class="mc"><div class="k">ROLE</div><div class="v">UI / Motion Designer</div></div>
+      <div class="mc"><div class="k">SCOPE</div><div class="v">Cluster UI + states</div></div>
+      <div class="mc"><div class="k">CONTEXT</div><div class="v">In-motion, glanceable</div></div>
+      <div class="mc"><div class="k">CONSTRAINT</div><div class="v">The half-second glance</div></div>
+    </div>
+  </section>
+
+  <div class="bleed imgblock" data-reveal>
+    <figure class="fig zoom" data-cursor="LOOK" data-plx><img src="images/ola-home-ready.png" alt="Ola cluster, ready state"/>
+      <figcaption class="cap">CLUSTER, READY</figcaption></figure>
+  </div>
+
+  <section class="cs-sec">
+    <div class="sec-label">01 / THE CONSTRAINT</div>
+    <div class="cs-grid">
+      <h2 class="col-h" data-reveal-words>Designed for the glance, not the <span class="serif">stare.</span></h2>
+      <div class="cs-body" data-reveal>
+        <p>A rider can spare about half a second. In that window the cluster has to answer two things,
+        how fast and how far, and let everything else fall away.</p>
+        <p>So the hierarchy is strict. Speed and range dominate, the smaller controls step back, and
+        nothing fights for your eye at the moment it matters. <b>Being readable is the whole brief.</b></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-sec tight">
+    <div class="duo">
+      <figure class="fig zoom" data-cursor="LOOK" data-reveal><img src="images/ola-home-ready.png" alt="Ola ready state"/><figcaption class="cap">READY</figcaption></figure>
+      <figure class="fig zoom" data-cursor="LOOK" data-reveal><img src="images/ola-home-park.png" alt="Ola parked state"/><figcaption class="cap">PARKED</figcaption></figure>
+    </div>
+    <p class="figcap">Two modes, one visual language. The cluster changes what it says without changing how it reads.</p>
+  </section>
+
+  <section class="cs-sec">
+    <div class="sec-label">02 / STATES &amp; SETTINGS</div>
+    <div class="cs-grid">
+      <h2 class="col-h" data-reveal-words>Depth without the <span class="serif">noise.</span></h2>
+      <div class="cs-body" data-reveal>
+        <p>Settings, sound, display, connectivity. The cluster carries real depth, but it stays out of
+        the way until you ask for it. Every secondary screen uses the same calm hierarchy.</p>
+        <p>Modals and passcode entry are built so you can use them without losing track of where you
+        are.</p>
+      </div>
+    </div>
+    <div class="stack imgblock">
+      <div class="duo">
+        <figure class="fig zoom" data-cursor="LOOK" data-reveal><img src="images/ola-settings-display.png" alt="Display settings"/><figcaption class="cap">DISPLAY</figcaption></figure>
+        <figure class="fig zoom" data-cursor="LOOK" data-reveal><img src="images/ola-settings-sound.png" alt="Sound settings"/><figcaption class="cap">SOUND</figcaption></figure>
+      </div>
+      <div class="duo">
+        <figure class="fig zoom" data-cursor="LOOK" data-reveal><img src="images/ola-settings-bluetooth.png" alt="Bluetooth settings"/><figcaption class="cap">CONNECTIVITY</figcaption></figure>
+        <figure class="fig zoom" data-cursor="LOOK" data-reveal><img src="images/ola-modals.png" alt="Cluster modals"/><figcaption class="cap">MODALS</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="bleed imgblock" data-reveal>
+    <div class="offset left">
+      <div class="rail"><div class="rl-k">MOTION</div>
+        <p>The needle eases into place instead of snapping. A glance reads as calm, not alarm. The
+        motion is a safety decision, tuned so your eye trusts it right away.</p></div>
+      <figure class="fig zoom" data-cursor="LOOK" data-plx><img src="images/ola-passcode.png" alt="Ola passcode entry"/></figure>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="band-in">
+      <div class="m" data-reveal><div class="mv">0.5s</div><div class="mk">the design target <em>one glance</em></div></div>
+      <div class="m" data-reveal><div class="mv">2</div><div class="mk">primary metrics <em>speed · range</em></div></div>
+      <div class="m" data-reveal><div class="mv">100%</div><div class="mk">glanceable hierarchy</div></div>
+    </div>
+  </div>
+  <section class="cs-next">
+    <a href="creb.html" data-mag data-cursor="OPEN">
+      <div><div class="nx-k">NEXT PROJECT / 01</div><div class="nx-t">Compound Real Estate Bonds</div></div>
+      <span class="nx-k">→</span>
+    </a>
+  </section>
+  <footer class="cs-contact">
+    <div class="ct-inner">
+      <div class="ct-k"><span class="pip"></span>AVAILABLE FOR WORK</div>
+      <a href="mailto:kannal2242@gmail.com" class="ct-big" data-mag>Let's build<br>something <span class="serif">good.</span></a>
+      <div class="ct-row">
+        <a href="mailto:kannal2242@gmail.com" data-mag>kannal2242@gmail.com</a>
+        <a href="https://www.linkedin.com/in/kannal-umayan-809120235" target="_blank" rel="noopener" data-mag>LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="ct-base"><span>© 2026 Kannal Umayan</span><span>Ola · Cluster UI</span>
+      <button class="to-top" data-scroll-top data-mag>Back to top ↑</button></div>
+  </footer>
+</main>
+<script src="vendor/lenis.min.js"></script>
+<script src="smooth.js"></script>
+<script src="transitions.js"></script>
+<script src="case.js"></script>
+</body>
+</html>

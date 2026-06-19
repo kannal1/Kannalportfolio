@@ -4,6 +4,36 @@ import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'fr
 import { ParallaxImage, RevealText, Reveal } from '../components/Motion'
 import { byId, projects } from '../data/projects'
 import { caseStudies } from '../data/caseStudies'
+import { ia } from '../data/ia'
+
+const EO = [0.16, 1, 0.3, 1]
+
+// Information architecture map: a root node feeding labelled section columns.
+function IAMap({ data }) {
+  return (
+    <div className="ia-map">
+      <div className="ia-root">
+        <span className="ia-root-k">Root</span>
+        <span className="ia-root-t">{data.root}</span>
+        <span className="ia-root-s">{data.rootSub}</span>
+      </div>
+      <div className="ia-grid">
+        {data.sections.map((s, i) => (
+          <motion.div className="ia-col" key={s.title}
+            initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6, ease: EO, delay: (i % 3) * 0.07 }}>
+            <div className="ia-col-h"><span className="ia-n">{s.n}</span>{s.title}</div>
+            <ul>
+              {s.items.map((it, j) => (
+                <li key={it}><span className="ia-sub">{s.n}.{j + 1}</span>{it}</li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 function Gallery({ frames }) {
   if (!frames || !frames.length) return null
@@ -116,6 +146,16 @@ export default function CaseStudy() {
       {story.chapters.map((c, i) => (
         <Chapter key={i} c={c} group={c.groupKey ? groups[c.groupKey] : null} />
       ))}
+      {ia[id] && (
+        <section className="cs-chapter ia-section">
+          <div className="ia-inner">
+            <Reveal className="cs-ch-k">Information architecture</Reveal>
+            <RevealText as="h2" text="One map the whole team agreed on" />
+            {ia[id].intro && <Reveal className="ia-intro" delay={0.1}><p>{ia[id].intro}</p></Reveal>}
+            <IAMap data={ia[id]} />
+          </div>
+        </section>
+      )}
       <section className="cs-next" onClick={() => navigate(`/work/${next.id}`)} data-cursor="NEXT">
         <img src={next.cover} alt={next.name} />
         <div>

@@ -75,7 +75,7 @@ export const projects = [
       { v: '~70%', k: 'conversion lift', sub: '' },
     ],
     groups: build('creb', [
-      { key: 'overview', title: 'Overview', blurb: 'The product, light and dark.', files: [['creb-hero.png', 'Marketing hero'], 'creb-light-dashboard.png', 'creb-dashboard-desktop.png'] },
+      { key: 'overview', title: 'Overview', blurb: 'The shipped product.', files: [['creb-hero.png', 'Marketing hero'], 'creb-dashboard-desktop.png'] },
       { key: 'trust', title: 'Onboarding & trust', blurb: 'The scary first steps — link a bank, verify ID — made to feel safe.', files: ['creb-screen-plaid-bank.png', 'creb-screen-plaid-idv.png', 'creb-screen-popular-offer.png'] },
       { key: 'invest', title: 'Invest & redeem', blurb: 'Buy bonds, watch interest, reinvest, refer.', files: ['creb-screen-bonds.png', 'creb-screen-buy-bonds.png', 'creb-screen-buy-bonds-confirm.png', 'creb-screen-purchase-success.png', 'creb-screen-calculator.png', 'creb-screen-reinvesting.png', 'creb-screen-refer-earn.png'] },
       { key: 'withdraw', title: 'Withdraw — every state', blurb: 'Confirm, success, failure, help. The states most people skip.', files: ['creb-withdraw-desktop.png', 'creb-withdraw-desktop-confirm.png', 'creb-withdraw-desktop-success.png', 'creb-withdraw-desktop-failed.png', 'creb-withdraw-desktop-help.png'] },

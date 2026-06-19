@@ -1,21 +1,16 @@
 import { useRef, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
-import { Parallax, RevealText, Reveal } from '../components/Motion'
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
+import { ParallaxImage, RevealText, Reveal } from '../components/Motion'
 import { byId, projects } from '../data/projects'
 import { caseStudies } from '../data/caseStudies'
-
-function span(kind) { return kind === 'phone' ? 'tall' : (kind === 'wide' || kind === 'pano') ? 'wide' : '' }
 
 function Gallery({ frames }) {
   if (!frames || !frames.length) return null
   return (
     <div className="cs-gallery">
-      {frames.map((f, i) => (
-        <Parallax key={f.src} distance={i % 2 ? 70 : 40} className={`cs-shot ${span(f.kind)}`}>
-          <img src={f.src} alt={f.caption} loading="lazy" />
-          <span className="cs-shot-cap">{f.caption} · {f.dim}px</span>
-        </Parallax>
+      {frames.map((f) => (
+        <ParallaxImage key={f.src} src={f.src} caption={`${f.caption} · ${f.dim}px`} wide={f.ar >= 1.9} portrait={f.ar < 0.8} />
       ))}
     </div>
   )
@@ -68,22 +63,14 @@ function Chapter({ c, group }) {
 }
 
 function CsHero({ project, story }) {
-  const ref = useRef(null)
-  const reduce = useReducedMotion()
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '24%'])
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12])
   const h = story.hero
   return (
-    <header className="cs-hero" ref={ref}>
-      <div className="cs-hero-media">
-        <motion.img src={project.cover} alt={project.name} style={{ y: reduce ? 0 : y, scale: reduce ? 1 : scale }} />
-      </div>
+    <header className="cs-hero">
       <div className="cs-hero-inner">
         <Reveal className="cs-tags">Plate P-{project.no} · {h.eyebrow}</Reveal>
         <h1>
           <RevealText text={h.title} />
-          {h.titleSerif && <RevealText text={h.titleSerif} delay={0.2} className="" />}
+          {h.titleSerif && <RevealText text={h.titleSerif} delay={0.2} />}
         </h1>
         <Reveal className="cs-lead" delay={0.2}>{h.lead}</Reveal>
         <Reveal className="cs-meta" delay={0.3}>
@@ -91,6 +78,20 @@ function CsHero({ project, story }) {
         </Reveal>
       </div>
     </header>
+  )
+}
+
+// cover image as its own full-width parallax band, the same on every case page
+function Cover({ project }) {
+  const ref = useRef(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const y = useSpring(useTransform(scrollYProgress, [0, 1], ['-14%', '14%']), { stiffness: 80, damping: 26, mass: 0.5 })
+  return (
+    <div className="cs-cover" ref={ref}>
+      <motion.img src={project.cover} alt={`${project.name} product`} style={{ y: reduce ? 0 : y }} draggable="false" />
+      <span className="cs-shot-cap">{project.short} · shipped product</span>
+    </div>
   )
 }
 
@@ -111,6 +112,7 @@ export default function CaseStudy() {
     <motion.div style={{ '--accent': project.accent }}
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <CsHero project={project} story={story} />
+      <Cover project={project} />
       {story.chapters.map((c, i) => (
         <Chapter key={i} c={c} group={c.groupKey ? groups[c.groupKey] : null} />
       ))}

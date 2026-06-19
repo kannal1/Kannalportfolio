@@ -38,6 +38,24 @@ export function RevealText({ text, className, as = 'div', delay = 0, stagger = 0
   )
 }
 
+// Big uniform image frame with EXTREME internal parallax: the image is
+// oversized and translated vertically inside a clipped frame as it passes,
+// so it reveals top-to-bottom. Frame size is fixed (even across all pages).
+export function ParallaxImage({ src, caption, wide, portrait }) {
+  const ref = useRef(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  // landscape shots clip-reveal hard; portraits (phones) are shown whole and drift gently
+  const yRaw = useTransform(scrollYProgress, [0, 1], portrait ? ['-8%', '8%'] : ['-17%', '17%'])
+  const y = useSpring(yRaw, { stiffness: 80, damping: 26, mass: 0.5 })
+  return (
+    <div className={`cs-shot${wide ? ' span2' : ''}${portrait ? ' portrait' : ''}`} ref={ref} data-cursor="VIEW">
+      <motion.img src={src} alt={caption} loading="lazy" draggable="false" style={{ y: reduce ? 0 : y }} />
+      {caption && <span className="cs-shot-cap">{caption}</span>}
+    </div>
+  )
+}
+
 // Simple fade-and-rise on view.
 export function Reveal({ children, className, y = 40, delay = 0, once = true }) {
   return (

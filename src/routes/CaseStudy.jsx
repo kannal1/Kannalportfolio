@@ -46,44 +46,92 @@ function Gallery({ frames }) {
   )
 }
 
-function Chapter({ c, group }) {
-  if (c.kind === 'impact') {
-    return (
-      <section className="cs-impact">
-        <div className="cs-ch-k" style={{ maxWidth: 1180, margin: '0 auto 30px' }}>{c.label}</div>
-        <div className="row">
-          {(c.metrics || []).map((m) => (
-            <Reveal key={m.k}>
+function Headline({ title, serif }) {
+  return (
+    <>
+      <RevealText as="span" text={title} />
+      {serif && <> <RevealText as="span" className="em-serif" text={serif} delay={0.12} /></>}
+    </>
+  )
+}
+
+function StepsList({ items }) {
+  return (
+    <div className="cs-steps">
+      {(items || []).map((it, i) => (
+        <Reveal key={i} className="cs-step" delay={i * 0.05}>
+          <div className="sn">{it.n || String(i + 1).padStart(2, '0')}</div>
+          <div><h4>{it.title}</h4><p>{it.body}</p></div>
+        </Reveal>
+      ))}
+    </div>
+  )
+}
+
+function ImpactAct({ c, index }) {
+  const ref = useRef(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const numY = useSpring(useTransform(scrollYProgress, [0, 1], ['-26%', '26%']), { stiffness: 60, damping: 24, mass: 0.6 })
+  const rowY = useSpring(useTransform(scrollYProgress, [0, 1], [80, -80]), { stiffness: 90, damping: 28, mass: 0.4 })
+  return (
+    <section className="cs-act cs-impact-act" ref={ref}>
+      <motion.span className="cs-act-num" style={{ y: reduce ? 0 : numY }} aria-hidden="true">{String(index + 1).padStart(2, '0')}</motion.span>
+      <div className="cs-act-inner">
+        <Reveal className="cs-act-k">{c.label}</Reveal>
+        <h2 className="cs-act-h"><Headline title={c.title} serif={c.titleSerif} /></h2>
+        <motion.div className="cs-impact-row" style={{ y: reduce ? 0 : rowY }}>
+          {(c.metrics || []).map((m, i) => (
+            <Reveal key={m.k} delay={i * 0.08}>
               <div className="iv">{m.v}</div>
               <div className="ik">{m.k}{m.sub ? <em> · {m.sub}</em> : null}</div>
             </Reveal>
           ))}
-        </div>
-        {c.body && <p style={{ maxWidth: 1180, margin: '32px auto 0', color: 'var(--fg-dim)', fontSize: 17, lineHeight: 1.6 }}>{c.body[0]}</p>}
-      </section>
-    )
-  }
+        </motion.div>
+        {c.body && <Reveal delay={0.1}><p className="cs-impact-note">{c.body[0]}</p></Reveal>}
+      </div>
+    </section>
+  )
+}
+
+function ReflectionAct({ c }) {
+  const ref = useRef(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const numY = useSpring(useTransform(scrollYProgress, [0, 1], ['-22%', '22%']), { stiffness: 60, damping: 24, mass: 0.6 })
+  return (
+    <section className="cs-act cs-reflect" ref={ref}>
+      <motion.span className="cs-act-num ghost" style={{ y: reduce ? 0 : numY }} aria-hidden="true">FIN</motion.span>
+      <div className="cs-reflect-inner">
+        <Reveal className="cs-act-k">{c.label}</Reveal>
+        <h2 className="cs-reflect-h"><Headline title={c.title} serif={c.titleSerif} /></h2>
+        {c.body && c.body.map((p, i) => <Reveal key={i} delay={0.1 + i * 0.06}><p>{p}</p></Reveal>)}
+      </div>
+    </section>
+  )
+}
+
+function Chapter({ c, group, index }) {
+  const ref = useRef(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const numY = useSpring(useTransform(scrollYProgress, [0, 1], ['-28%', '28%']), { stiffness: 60, damping: 24, mass: 0.6 })
+  const headY = useSpring(useTransform(scrollYProgress, [0, 1], [70, -70]), { stiffness: 90, damping: 28, mass: 0.4 })
+
+  if (c.kind === 'impact') return <ImpactAct c={c} index={index} />
+  if (c.kind === 'reflection') return <ReflectionAct c={c} />
+
   const isSteps = c.kind === 'process' || c.kind === 'gaps'
   return (
     <>
-      <section className="cs-chapter">
-        <div className="wrap">
-          <Reveal className="cs-ch-k">{c.label}</Reveal>
-          <div className="cs-ch-grid">
-            <RevealText as="h2" text={`${c.title}${c.titleSerif ? ' ' + c.titleSerif : ''}`} />
-            <div className="cs-ch-body">
-              {c.body && c.body.map((p, i) => <Reveal key={i} delay={i * 0.05}><p>{p}</p></Reveal>)}
-              {isSteps && (
-                <div className="cs-steps">
-                  {(c.items || []).map((it, i) => (
-                    <Reveal key={i} className="cs-step" delay={i * 0.05}>
-                      <div className="sn">{it.n || String(i + 1).padStart(2, '0')}</div>
-                      <div><h4>{it.title}</h4><p>{it.body}</p></div>
-                    </Reveal>
-                  ))}
-                </div>
-              )}
-            </div>
+      <section className="cs-act" ref={ref}>
+        <motion.span className="cs-act-num" style={{ y: reduce ? 0 : numY }} aria-hidden="true">{String(index + 1).padStart(2, '0')}</motion.span>
+        <div className="cs-act-inner">
+          <Reveal className="cs-act-k">{c.label}</Reveal>
+          <motion.h2 className="cs-act-h" style={{ y: reduce ? 0 : headY }}><Headline title={c.title} serif={c.titleSerif} /></motion.h2>
+          <div className="cs-act-body">
+            {c.body && c.body.map((p, i) => <Reveal key={i} delay={i * 0.05}><p>{p}</p></Reveal>)}
+            {isSteps && <StepsList items={c.items} />}
           </div>
         </div>
       </section>
@@ -144,7 +192,7 @@ export default function CaseStudy() {
       <CsHero project={project} story={story} />
       <Cover project={project} />
       {story.chapters.map((c, i) => (
-        <Chapter key={i} c={c} group={c.groupKey ? groups[c.groupKey] : null} />
+        <Chapter key={i} c={c} group={c.groupKey ? groups[c.groupKey] : null} index={i} />
       ))}
       {ia[id] && (
         <section className="cs-chapter ia-section">

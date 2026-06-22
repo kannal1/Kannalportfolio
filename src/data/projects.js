@@ -66,7 +66,7 @@ export const projects = [
     id: 'creb', no: '01', accent: '#2C5F7C', accent2: '#E2E8EC',
     name: 'Compound Real Estate Bonds',
     short: 'Real Estate Bonds',
-    tags: 'Consumer fintech · Compound · since 2024',
+    tags: 'Consumer fintech, Compound, since 2024',
     line: 'I rebuilt the whole CREB experience: signing up, verifying ID, buying bonds, taking money out, the reports, and the design system that ties it all together.',
     cover: '/images/creb-hero.png',
     metrics: [
@@ -76,9 +76,9 @@ export const projects = [
     ],
     groups: build('creb', [
       { key: 'overview', title: 'Overview', blurb: 'The shipped product.', files: [['creb-hero.png', 'Marketing hero'], 'creb-dashboard-desktop.png'] },
-      { key: 'trust', title: 'Onboarding & trust', blurb: 'The scary first steps — link a bank, verify ID — made to feel safe.', files: ['creb-screen-plaid-bank.png', 'creb-screen-plaid-idv.png', 'creb-screen-popular-offer.png'] },
+      { key: 'trust', title: 'Onboarding & trust', blurb: 'The scary first steps, link a bank and verify ID, made to feel safe.', files: ['creb-screen-plaid-bank.png', 'creb-screen-plaid-idv.png', 'creb-screen-popular-offer.png'] },
       { key: 'invest', title: 'Invest & redeem', blurb: 'Buy bonds, watch interest, reinvest, refer.', files: ['creb-screen-bonds.png', 'creb-screen-buy-bonds.png', 'creb-screen-buy-bonds-confirm.png', 'creb-screen-purchase-success.png', 'creb-screen-calculator.png', 'creb-screen-reinvesting.png', 'creb-screen-refer-earn.png'] },
-      { key: 'withdraw', title: 'Withdraw — every state', blurb: 'Confirm, success, failure, help. The states most people skip.', files: ['creb-withdraw-desktop.png', 'creb-withdraw-desktop-confirm.png', 'creb-withdraw-desktop-success.png', 'creb-withdraw-desktop-failed.png', 'creb-withdraw-desktop-help.png'] },
+      { key: 'withdraw', title: 'Withdraw, every state', blurb: 'Confirm, success, failure, help. The states most people skip.', files: ['creb-withdraw-desktop.png', 'creb-withdraw-desktop-confirm.png', 'creb-withdraw-desktop-success.png', 'creb-withdraw-desktop-failed.png', 'creb-withdraw-desktop-help.png'] },
       { key: 'system', title: 'System & flows', blurb: 'The map behind the screens.', files: [['creb-user-flow.png', 'End-to-end user flow'], ['creb-sitemap.png', 'Sitemap'], ['creb-wireframe-labeled.png', 'Annotated wireframes']] },
     ]),
   },
@@ -86,7 +86,7 @@ export const projects = [
     id: 'cgb', no: '02', accent: '#A24A33', accent2: '#F2E5E0',
     name: 'Compound Gold Bonds',
     short: 'Gold Bonds',
-    tags: 'Premium fintech · Compound · 2025',
+    tags: 'Premium fintech, Compound, 2025',
     line: 'A gold-bond product for serious investors. New brand, every screen built from scratch, done in three months.',
     cover: '/images/cgb-hero.png',
     compare: { before: '/images/cgb-wireframe-hifi.png', after: '/images/cgb-screen-dashboard.png' },
@@ -106,7 +106,7 @@ export const projects = [
     id: '3eco', no: '03', accent: '#3D6B4E', accent2: '#E4ECE6',
     name: '3Eco: one platform, four users',
     short: 'one platform, four users',
-    tags: 'B2B operations · Fibonalabs',
+    tags: 'B2B operations, Fibonalabs',
     line: 'Delivery software with four very different users. Instead of one screen for everyone, I gave each role exactly what their job needs.',
     cover: '/images/3eco-hero.png',
     metrics: [
@@ -116,15 +116,15 @@ export const projects = [
     ],
     groups: build('3eco', [
       { key: 'overview', title: 'Overview', blurb: 'One platform, tuned per role.', files: [['3eco-hero.png', 'Platform overview']] },
-      { key: 'revenue', title: 'Revenue console', blurb: 'Add, edit, complete — dense surfaces for power users.', files: [['3eco-cs-revenue-complete.png', 'Revenue — complete'], ['3eco-cs-revenue-add.png', 'Revenue — add'], ['3eco-cs-revenue-edit.png', 'Revenue — edit']] },
-      { key: 'roles', title: 'Role surfaces', blurb: 'Checklist, timeline, penalties — each role its own job.', files: [['3eco-cpro-checklist.png', 'Compliance checklist'], ['3eco-acpro-timeline.png', 'Audit timeline'], ['3eco-penalty-admin.png', 'Penalty admin']] },
+      { key: 'revenue', title: 'Revenue console', blurb: 'Add, edit, complete. Dense surfaces for power users.', files: [['3eco-cs-revenue-complete.png', 'Revenue, complete'], ['3eco-cs-revenue-add.png', 'Revenue, add'], ['3eco-cs-revenue-edit.png', 'Revenue, edit']] },
+      { key: 'roles', title: 'Role surfaces', blurb: 'Checklist, timeline, penalties. Each role its own job.', files: [['3eco-cpro-checklist.png', 'Compliance checklist'], ['3eco-acpro-timeline.png', 'Audit timeline'], ['3eco-penalty-admin.png', 'Penalty admin']] },
     ]),
   },
   {
     id: 'ola', no: '04', accent: '#9A6A24', accent2: '#F0E8D8',
     name: 'Ola: read at 60 km/h',
     short: 'read at 60 km/h',
-    tags: 'Automotive UI · Ola',
+    tags: 'Automotive UI, Ola',
     line: 'The screen on an electric scooter. You only get half a second to read it while riding, so I put speed and range first and pushed everything else out of the way.',
     cover: '/images/ola-home-ready.png',
     metrics: [
@@ -133,8 +133,8 @@ export const projects = [
       { v: 'HMI', k: 'cluster UI', sub: 'Ola' },
     ],
     groups: build('ola', [
-      { key: 'cluster', title: 'The cluster', blurb: 'Ready and parked — speed and range own the screen.', files: [['ola-home-ready.png', 'Ready'], ['ola-home-park.png', 'Parked']] },
-      { key: 'settings', title: 'Settings', blurb: 'Display, sound, bluetooth — reachable, never in the way.', files: ['ola-settings-display.png', 'ola-settings-sound.png', 'ola-settings-bluetooth.png'] },
+      { key: 'cluster', title: 'The cluster', blurb: 'Ready and parked. Speed and range own the screen.', files: [['ola-home-ready.png', 'Ready'], ['ola-home-park.png', 'Parked']] },
+      { key: 'settings', title: 'Settings', blurb: 'Display, sound, bluetooth, reachable and never in the way.', files: ['ola-settings-display.png', 'ola-settings-sound.png', 'ola-settings-bluetooth.png'] },
       { key: 'secure', title: 'Security & modals', blurb: 'Passcode and interrupts, sized for a glance.', files: ['ola-passcode.png', 'ola-modals.png'] },
     ]),
   },

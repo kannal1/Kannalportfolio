@@ -40,7 +40,10 @@ function Gallery({ frames }) {
   return (
     <div className="cs-gallery">
       {frames.map((f) => (
-        <ParallaxImage key={f.src} src={f.src} caption={`${f.caption} · ${f.dim}px`} wide={f.ar >= 1.9} portrait={f.ar < 0.8} />
+        <div key={f.src} className={`cs-shot${f.ar >= 1.9 ? ' span2' : ''}`} style={{ aspectRatio: String(f.ar) }}>
+          <ParallaxImage src={f.src} alt={f.caption} depth={0} zoom={false} />
+          <span className="cs-shot-cap">{f.caption}</span>
+        </div>
       ))}
     </div>
   )
@@ -84,7 +87,7 @@ function ImpactAct({ c, index }) {
           {(c.metrics || []).map((m, i) => (
             <Reveal key={m.k} delay={i * 0.08}>
               <div className="iv num">{m.v}</div>
-              <div className="ik">{m.k}{m.sub ? <span className="metric-delta num">{m.sub}</span> : null}</div>
+              <div className="ik">{m.k}{m.sub ? <span className="stat-sub num">{m.sub}</span> : null}</div>
             </Reveal>
           ))}
         </motion.div>
@@ -144,8 +147,9 @@ function CsHero({ project, story }) {
   const h = story.hero
   return (
     <header className="cs-hero">
+      <div className="cs-hero-aura" aria-hidden="true" />
       <div className="cs-hero-inner">
-        <Reveal className="cs-tags">Plate P-{project.no} · {h.eyebrow}</Reveal>
+        <Reveal className="cs-tags">Project P-{project.no} / {h.eyebrow}</Reveal>
         <h1>
           <RevealText as="span" text={h.title} />
           {h.titleSerif && <> <RevealText as="span" className="em-serif" text={h.titleSerif} delay={0.2} /></>}
@@ -156,20 +160,6 @@ function CsHero({ project, story }) {
         </Reveal>
       </div>
     </header>
-  )
-}
-
-// cover image as its own full-width parallax band, the same on every case page
-function Cover({ project }) {
-  const ref = useRef(null)
-  const reduce = useReducedMotion()
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useSpring(useTransform(scrollYProgress, [0, 1], ['-14%', '14%']), SPRING_DRIFT)
-  return (
-    <div className="cs-cover" ref={ref}>
-      <motion.img src={project.cover} alt={`${project.name} product`} style={{ y: reduce ? 0 : y }} draggable="false" />
-      <span className="cs-shot-cap">{project.short} · shipped product</span>
-    </div>
   )
 }
 
@@ -189,31 +179,34 @@ export default function CaseStudy() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <CsHero project={project} story={story} />
-      <Cover project={project} />
+      <div className="cs-cover">
+        <ParallaxImage src={project.cover} alt={`${project.name}, shipped product`} depth={10} zoom={false} eager />
+        <span className="cap">{project.short}, shipped product</span>
+      </div>
       {project.compare && <BeforeAfter before={project.compare.before} after={project.compare.after} />}
       {story.chapters.map((c, i) => (
         <Chapter key={i} c={c} group={c.groupKey ? groups[c.groupKey] : null} index={i} />
       ))}
       {ia[id] && (
-        <section className="cs-chapter ia-section">
+        <section className="ia-section">
           <div className="ia-inner">
-            <Reveal className="cs-ch-k">Information architecture</Reveal>
+            <Reveal className="ia-k">Information architecture</Reveal>
             <RevealText as="h2" text="One map the whole team agreed on" />
             {ia[id].intro && <Reveal className="ia-intro" delay={0.1}><p>{ia[id].intro}</p></Reveal>}
             <IAMap data={ia[id]} />
           </div>
         </section>
       )}
-      <section className="cs-next" onClick={() => navigate(`/work/${next.id}`)} data-cursor="NEXT">
-        <img src={next.cover} alt={next.name} />
+      <section className="cs-next" onClick={() => navigate(`/work/${next.id}`)}>
+        <ParallaxImage src={next.cover} alt="" depth={8} zoom={false} />
         <div>
-          <div className="nk">Next project · P-{next.no}</div>
+          <div className="nk">Next project / P-{next.no}</div>
           <div className="nt">{next.name}</div>
         </div>
       </section>
       <footer className="foot">
-        <span>© 2026 Kannal Umayan</span>
-        <button onClick={() => navigate('/')} data-cursor="HOME">All work ↑</button>
+        <span>&copy; 2026 Kannal Umayan</span>
+        <button onClick={() => navigate('/')}>All work</button>
         <span>{project.short}</span>
       </footer>
     </motion.div>

@@ -5,8 +5,8 @@ import { ParallaxImage, RevealText, Reveal } from '../components/Motion'
 import { byId, projects } from '../data/projects'
 import { caseStudies } from '../data/caseStudies'
 import { ia } from '../data/ia'
-
-const EO = [0.16, 1, 0.3, 1]
+import BeforeAfter from '../components/BeforeAfter'
+import { EO, SPRING_DRIFT, SPRING_GLIDE } from '../lib/motion'
 
 // Information architecture map: a root node feeding labelled section columns.
 function IAMap({ data }) {
@@ -72,8 +72,8 @@ function ImpactAct({ c, index }) {
   const ref = useRef(null)
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const numY = useSpring(useTransform(scrollYProgress, [0, 1], ['-26%', '26%']), { stiffness: 60, damping: 24, mass: 0.6 })
-  const rowY = useSpring(useTransform(scrollYProgress, [0, 1], [80, -80]), { stiffness: 90, damping: 28, mass: 0.4 })
+  const numY = useSpring(useTransform(scrollYProgress, [0, 1], ['-26%', '26%']), SPRING_DRIFT)
+  const rowY = useSpring(useTransform(scrollYProgress, [0, 1], [80, -80]), SPRING_GLIDE)
   return (
     <section className="cs-act cs-impact-act" ref={ref}>
       <motion.span className="cs-act-num" style={{ y: reduce ? 0 : numY }} aria-hidden="true">{String(index + 1).padStart(2, '0')}</motion.span>
@@ -83,8 +83,8 @@ function ImpactAct({ c, index }) {
         <motion.div className="cs-impact-row" style={{ y: reduce ? 0 : rowY }}>
           {(c.metrics || []).map((m, i) => (
             <Reveal key={m.k} delay={i * 0.08}>
-              <div className="iv">{m.v}</div>
-              <div className="ik">{m.k}{m.sub ? <em> · {m.sub}</em> : null}</div>
+              <div className="iv num">{m.v}</div>
+              <div className="ik">{m.k}{m.sub ? <span className="metric-delta num">{m.sub}</span> : null}</div>
             </Reveal>
           ))}
         </motion.div>
@@ -98,7 +98,7 @@ function ReflectionAct({ c }) {
   const ref = useRef(null)
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const numY = useSpring(useTransform(scrollYProgress, [0, 1], ['-22%', '22%']), { stiffness: 60, damping: 24, mass: 0.6 })
+  const numY = useSpring(useTransform(scrollYProgress, [0, 1], ['-22%', '22%']), SPRING_DRIFT)
   return (
     <section className="cs-act cs-reflect" ref={ref}>
       <motion.span className="cs-act-num ghost" style={{ y: reduce ? 0 : numY }} aria-hidden="true">FIN</motion.span>
@@ -115,8 +115,8 @@ function Chapter({ c, group, index }) {
   const ref = useRef(null)
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const numY = useSpring(useTransform(scrollYProgress, [0, 1], ['-28%', '28%']), { stiffness: 60, damping: 24, mass: 0.6 })
-  const headY = useSpring(useTransform(scrollYProgress, [0, 1], [70, -70]), { stiffness: 90, damping: 28, mass: 0.4 })
+  const numY = useSpring(useTransform(scrollYProgress, [0, 1], ['-28%', '28%']), SPRING_DRIFT)
+  const headY = useSpring(useTransform(scrollYProgress, [0, 1], [70, -70]), SPRING_GLIDE)
 
   if (c.kind === 'impact') return <ImpactAct c={c} index={index} />
   if (c.kind === 'reflection') return <ReflectionAct c={c} />
@@ -147,8 +147,8 @@ function CsHero({ project, story }) {
       <div className="cs-hero-inner">
         <Reveal className="cs-tags">Plate P-{project.no} · {h.eyebrow}</Reveal>
         <h1>
-          <RevealText text={h.title} />
-          {h.titleSerif && <RevealText text={h.titleSerif} delay={0.2} />}
+          <RevealText as="span" text={h.title} />
+          {h.titleSerif && <> <RevealText as="span" className="em-serif" text={h.titleSerif} delay={0.2} /></>}
         </h1>
         <Reveal className="cs-lead" delay={0.2}>{h.lead}</Reveal>
         <Reveal className="cs-meta" delay={0.3}>
@@ -164,7 +164,7 @@ function Cover({ project }) {
   const ref = useRef(null)
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const y = useSpring(useTransform(scrollYProgress, [0, 1], ['-14%', '14%']), { stiffness: 80, damping: 26, mass: 0.5 })
+  const y = useSpring(useTransform(scrollYProgress, [0, 1], ['-14%', '14%']), SPRING_DRIFT)
   return (
     <div className="cs-cover" ref={ref}>
       <motion.img src={project.cover} alt={`${project.name} product`} style={{ y: reduce ? 0 : y }} draggable="false" />
@@ -187,10 +187,10 @@ export default function CaseStudy() {
   const next = projects[(idx + 1) % projects.length]
 
   return (
-    <motion.div style={{ '--accent': project.accent }}
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <CsHero project={project} story={story} />
       <Cover project={project} />
+      {project.compare && <BeforeAfter before={project.compare.before} after={project.compare.after} />}
       {story.chapters.map((c, i) => (
         <Chapter key={i} c={c} group={c.groupKey ? groups[c.groupKey] : null} index={i} />
       ))}

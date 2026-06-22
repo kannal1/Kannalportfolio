@@ -1,10 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { motion, useScroll } from 'framer-motion'
 import Home from './routes/Home'
 import CaseStudy from './routes/CaseStudy'
 import Cursor from './components/Cursor'
 import Nav from './components/Nav'
+import LoadGate from './components/LoadGate'
+import { EnterContext } from './lib/enter'
 import { useLenis } from './lib/useLenis'
 
 function Progress() {
@@ -24,8 +26,18 @@ function ScrollManager({ lenisRef }) {
 function Shell() {
   const lenisRef = useLenis()
   const location = useLocation()
+  const [entered, setEntered] = useState(false)
+
+  // Lenis is created stopped; release it only once the gate lifts.
+  useEffect(() => {
+    if (entered && lenisRef.current) {
+      lenisRef.current.start()
+      lenisRef.current.scrollTo(0, { immediate: true })
+    }
+  }, [entered, lenisRef])
+
   return (
-    <>
+    <EnterContext.Provider value={entered}>
       <div className="grain" aria-hidden="true" />
       <Cursor />
       <Nav />
@@ -36,7 +48,8 @@ function Shell() {
         <Route path="/work/:id" element={<CaseStudy />} />
         <Route path="*" element={<Home />} />
       </Routes>
-    </>
+      {!entered && <LoadGate onDone={() => setEntered(true)} />}
+    </EnterContext.Provider>
   )
 }
 

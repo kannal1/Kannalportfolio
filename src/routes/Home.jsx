@@ -1,15 +1,18 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
-import { Parallax, RevealText, Reveal } from '../components/Motion'
+import { motion, useScroll, useTransform, useSpring, useMotionValue, useReducedMotion } from 'framer-motion'
+import { Parallax, RevealText, Reveal, useMagnetic } from '../components/Motion'
+import Metric from '../components/Metric'
+import { EnterContext } from '../lib/enter'
 import { projects, identity, about } from '../data/projects'
+import { EO } from '../lib/motion'
 
-const EO = [0.16, 1, 0.3, 1]
 const KEYWORDS = ['Fintech', 'Design Systems', '0 → 1 Products', 'Motion', 'B2B Platforms', 'Engineer-minded', 'Trust & Money']
 
 function Hero() {
   const ref = useRef(null)
   const reduce = useReducedMotion()
+  const entered = useContext(EnterContext)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -160])
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 220])
@@ -19,40 +22,49 @@ function Hero() {
   // pointer parallax
   const mx = useSpring(0, { stiffness: 60, damping: 20 })
   const my = useSpring(0, { stiffness: 60, damping: 20 })
+  const bx = useTransform(mx, (v) => -v)
+  const by = useTransform(my, (v) => -v)
   useEffect(() => {
     if (reduce) return
     const m = (e) => { mx.set((e.clientX / innerWidth - 0.5) * 40); my.set((e.clientY / innerHeight - 0.5) * 40) }
     addEventListener('pointermove', m); return () => removeEventListener('pointermove', m)
   }, [mx, my, reduce])
 
+  // timed assemble after the load gate
   const lineV = {
     hidden: { y: '115%' },
-    visible: (i) => ({ y: '0%', transition: { duration: 1, ease: EO, delay: 0.15 + i * 0.12 } }),
+    visible: (i) => ({ y: '0%', transition: { duration: reduce ? 0.3 : 1, ease: EO, delay: reduce ? 0 : 0.1 + i * 0.12 } }),
   }
+  const stage = (delay) => ({
+    initial: reduce ? { opacity: 0 } : { opacity: 0, y: 18 },
+    animate: entered ? { opacity: 1, y: 0 } : (reduce ? { opacity: 0 } : { opacity: 0, y: 18 }),
+    transition: { duration: reduce ? 0.3 : 0.8, ease: EO, delay: reduce ? 0 : delay },
+  })
 
   return (
     <header className="hero" ref={ref}>
       <motion.div className="hero-bg" style={{ y: reduce ? 0 : blobY }}>
         <motion.div className="hero-blob a" style={{ x: mx, y: my }} />
-        <motion.div className="hero-blob b" style={{ x: useTransform(mx, (v) => -v), y: useTransform(my, (v) => -v) }} />
+        <motion.div className="hero-blob b" style={{ x: bx, y: by }} />
         <div className="hero-grid" />
       </motion.div>
 
       <motion.div className="hero-inner" style={{ opacity: fade }}>
-        <motion.div className="hero-kicker" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1, duration: 0.8 }}>
+        <motion.div className="hero-kicker" {...stage(0.02)}>
           <span className="dot" />Product Designer · Bengaluru · Available 2026
         </motion.div>
-        <motion.h1 className="hero-name" initial="hidden" animate="visible">
+        <motion.h1 className="hero-name" initial="hidden" animate={entered ? 'visible' : 'hidden'}>
           <span className="ln"><motion.em custom={0} variants={lineV} style={{ y: reduce ? 0 : y1 }}>Kannal</motion.em></span>
           <span className="ln"><motion.em custom={1} variants={lineV} className="stroke" style={{ y: reduce ? 0 : y2 }}>Umayan</motion.em></span>
         </motion.h1>
+        <motion.div className="hero-thesis" {...stage(0.5)}>
+          Clarity people trust with their <span className="g">money.</span>
+        </motion.div>
         <div className="hero-sub">
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.8 }}>
-            I design apps people trust with their money. The only designer at Compound, where I shipped two live fintech products and the systems behind them.
+          <motion.p {...stage(0.62)}>
+            The only designer at Compound, where I shipped two live fintech products and the systems behind them. Engineer turned designer: I render complexity legible.
           </motion.p>
-          <motion.span className="scroll-cue" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
-            <i />Scroll
-          </motion.span>
+          <motion.span className="scroll-cue" {...stage(0.82)}><i />Scroll</motion.span>
         </div>
       </motion.div>
     </header>
@@ -69,6 +81,11 @@ function Manifesto() {
           <div><div className="mk">Background</div><div className="mv">Two years writing .NET before design. I know what is hard to build.</div></div>
           <div><div className="mk">Looking for</div><div className="mv">A senior product role on a team that ships real work to real users.</div></div>
         </Reveal>
+        <Reveal className="quant" delay={0.12}>
+          <Metric value="2,000" label="Active investors" sub="from 400" />
+          <Metric value="$4M" label="Value held" sub="from $400k" />
+          <Metric value="~70%" label="Conversion lift" sub="across the journey" />
+        </Reveal>
       </div>
     </section>
   )
@@ -76,44 +93,39 @@ function Manifesto() {
 
 function Work() {
   const navigate = useNavigate()
-  const ref = useRef(null)
-  const trackRef = useRef(null)
   const reduce = useReducedMotion()
-  const [range, setRange] = useState(0)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
-  const x = useTransform(scrollYProgress, [0, 1], [0, -range])
-  const xs = useSpring(x, { stiffness: 110, damping: 28, mass: 0.4 })
-
-  useEffect(() => {
-    const calc = () => { if (trackRef.current) setRange(Math.max(0, trackRef.current.scrollWidth - innerWidth + 48)) }
-    calc(); addEventListener('resize', calc); return () => removeEventListener('resize', calc)
-  }, [])
+  const [active, setActive] = useState(null)
+  const [shown, setShown] = useState(projects[0].id)
+  const px = useMotionValue(0)
+  const py = useMotionValue(0)
+  const sx = useSpring(px, { stiffness: 220, damping: 28, mass: 0.5 })
+  const sy = useSpring(py, { stiffness: 220, damping: 28, mass: 0.5 })
+  const onMove = (e) => { px.set(e.clientX - 190); py.set(e.clientY - 150) }
+  const shownP = projects.find((p) => p.id === shown)
 
   return (
-    <section className="work" id="work" ref={ref} style={{ height: `${projects.length * 80 + 50}vh` }}>
-      <div className="work-sticky">
-        <div className="work-head">
-          <h2>Selected work</h2>
-          <span className="count">{String(projects.length).padStart(2, '0')} projects · drag-free scroll</span>
-        </div>
-        <motion.div className="work-track" ref={trackRef} style={{ x: reduce ? 0 : xs }}>
-          {projects.map((p) => (
-            <article className="panel" key={p.id} onClick={() => navigate(`/work/${p.id}`)} data-cursor="OPEN" style={{ '--accent': p.accent }}>
-              <span className="panel-no">{p.no}</span>
-              <div className="panel-media">
-                <img src={p.cover} alt={p.name} loading="lazy" draggable="false" />
-              </div>
-              <div className="panel-info">
-                <div>
-                  <div className="pl">{p.tags}</div>
-                  <h3>{p.name}</h3>
-                </div>
-                <span className="pcta">View case →</span>
-              </div>
-            </article>
-          ))}
-        </motion.div>
+    <section className="work" id="work" onMouseMove={reduce ? undefined : onMove}>
+      <div className="work-head">
+        <h2>Selected work</h2>
+        <span className="count num">{String(projects.length).padStart(2, '0')} — fintech · B2B ops · automotive</span>
       </div>
+      <div className={`worklist${active ? ' has-hover' : ''}`}>
+        {projects.map((p) => (
+          <div className="wrow" key={p.id} data-cursor="OPEN"
+            onMouseEnter={() => { setActive(p.id); setShown(p.id) }}
+            onMouseLeave={() => setActive((a) => (a === p.id ? null : a))}
+            onClick={() => navigate(`/work/${p.id}`)}>
+            <span className="w-no">P-{p.no}</span>
+            <h3 className="w-name">{p.name}</h3>
+            <span className="w-tags">{p.tags}</span>
+            <span className="w-go">View →</span>
+          </div>
+        ))}
+      </div>
+      <motion.div className="work-preview" style={{ x: sx, y: sy }}
+        animate={{ opacity: active ? 1 : 0, scale: active ? 1 : 0.92 }} transition={{ duration: 0.4, ease: EO }}>
+        {shownP && <img src={shownP.cover} alt={shownP.name} draggable="false" />}
+      </motion.div>
     </section>
   )
 }
@@ -152,12 +164,14 @@ function About() {
 }
 
 function Contact() {
+  const mag = useMagnetic(0.18)
   return (
     <>
       <section className="contact" id="contact">
         <Reveal>
           <div className="c-big">
-            <a href={`mailto:${identity.email}`} data-cursor="WRITE">Let’s<br />build <span className="g">good.</span></a>
+            <motion.a ref={mag.ref} onMouseMove={mag.onMouseMove} onMouseLeave={mag.onMouseLeave} style={{ x: mag.x, y: mag.y }}
+              href={`mailto:${identity.email}`} data-cursor="WRITE">Let’s<br />build <span className="g">good.</span></motion.a>
           </div>
         </Reveal>
         <div className="c-row">

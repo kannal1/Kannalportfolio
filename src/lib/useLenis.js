@@ -10,6 +10,7 @@ export function useLenis() {
     const lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 1, smoothWheel: true })
     ref.current = lenis
     if (typeof window !== 'undefined') window.__lenis = lenis
+    lenis.stop() // held until the load gate lifts (App releases it)
     let raf
     const loop = (t) => { lenis.raf(t); raf = requestAnimationFrame(loop) }
     raf = requestAnimationFrame(loop)

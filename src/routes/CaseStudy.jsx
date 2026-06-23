@@ -40,7 +40,7 @@ function Gallery({ frames }) {
   return (
     <div className="cs-gallery">
       {frames.map((f) => (
-        <div key={f.src} className={`cs-shot${f.ar >= 1.9 ? ' span2' : ''}`} style={{ aspectRatio: String(f.ar) }}>
+        <div key={f.src} className={`cs-shot${f.ar >= 1.9 ? ' span2' : ''}${f.ar < 0.8 ? ' portrait' : ''}`} style={{ aspectRatio: String(f.ar) }}>
           <ParallaxImage src={f.src} alt={f.caption} depth={0} zoom={false} />
           <span className="cs-shot-cap">{f.caption}</span>
         </div>

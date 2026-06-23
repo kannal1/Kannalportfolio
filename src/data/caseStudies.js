@@ -18,59 +18,59 @@ export const caseStudies = {
     },
     "chapters": [
       { "label": "01 / CONTEXT", "kind": "narrative", "groupKey": null, "title": "It worked, but it made people", "titleSerif": "nervous", "body": [
-        "CREB asks a lot more than a normal app. You connect your bank and move real savings into something most people have never bought before. That is a heavy moment.",
-        "The old flows worked, but they felt anxious. Steps were not explained. Jargon showed up at the worst times. The dashboard never reassured people that their money was doing anything.",
-        "In a money app, that anxiety is the thing that loses you customers. I came to design from .NET engineering, so I think in states. The state I kept seeing here was doubt, and nothing in the product answered it."
+        "CREB asks far more than a normal app. You link a real bank account and move real savings into a real-estate-backed bond, a product most first-timers have never bought. That is a heavy moment, and the old flows treated it like any other form.",
+        "Steps were not explained. Jargon landed at the worst possible time, right as someone was deciding whether to commit money. The dashboard showed balances but never reassured anyone that their money was actually working.",
+        "I came to design from two years writing .NET, so I read products as states, not screens. The state I kept hitting here was doubt, and nothing in the flow answered it. That was the real design problem, not the layout."
       ] },
       { "label": "02 / GAPS", "kind": "gaps", "groupKey": null, "title": "Three things were missing", "titleSerif": "", "body": [
-        "Before I drew a single screen, I named the gaps. Each one mapped to a reason a real person would stall and leave."
+        "Before drawing a screen I named the gaps. Each one mapped to a specific place a real person would stall, get nervous, and close the app."
       ], "items": [
-        { "n": "01", "title": "Trust", "body": "People needed proof at every step. What is verified, where the money goes, what happens next. Without that, every tap felt like a risk." },
-        { "n": "02", "title": "Plain language", "body": "APY, bond units, accrued interest, maturity. Obvious to the business, confusing to a first-timer. The words were a wall." },
-        { "n": "03", "title": "System", "body": "Every screen was a one-off. It needed a shared system so the whole thing felt like one product, not fifty separate pages." }
+        { "n": "01", "title": "Proof at every step", "body": "People needed to see what was verified, where their money sat, and what happened next. Identity, bank, and accreditation status were invisible, so every tap felt like a leap of faith." },
+        { "n": "02", "title": "Plain language", "body": "APY, bond units, accrued interest, maturity, IRA. Obvious to the business, a wall to a first-timer. The words themselves were stopping people." },
+        { "n": "03", "title": "One system, not fifty pages", "body": "Every screen was a one-off. Mobile and web drifted apart. It needed a shared system so the whole journey felt like one product built by one careful team." }
       ] },
       { "label": "03 / PROCESS", "kind": "process", "groupKey": "system", "title": "Map first, then", "titleSerif": "draw", "body": [
-        "I did not start in the UI. I started by understanding the whole product, then traced every path a person could take, including the ones that fail."
+        "I did not open the UI first. I mapped the whole product, traced every path a person could take including the ones that fail, then designed against that map."
       ], "items": [
-        { "n": "01", "title": "Map the whole product first", "body": "Before touching a screen, I mapped the whole product: dashboard, investing, redemption, account, rewards, support. The sitemap became the thing we all agreed on." },
-        { "n": "02", "title": "Trace every journey end to end", "body": "I drew the flows: first purchase, recurring investment, withdrawal, ID and bank linking, plus every success and failure state. The master user flow put the whole journey on one canvas." },
-        { "n": "03", "title": "Low fidelity then high", "body": "Wireframes locked the structure while it was cheap to change. Then final UI once the bones were solid. Mapping success and failure side by side kept the build from missing edge cases." }
+        { "n": "01", "title": "Map the whole product", "body": "Dashboard, investing, redemption, account and security, rewards, support. The sitemap became the single artifact the whole team agreed on before a pixel moved." },
+        { "n": "02", "title": "Trace every journey end to end", "body": "First purchase, recurring investment, withdrawal, Plaid identity and bank linking, two-factor setup, plus every success and failure state. The master flow put the entire journey on one canvas." },
+        { "n": "03", "title": "Wireframe, then final UI", "body": "Annotated wireframes locked structure while it was still cheap to change. Mapping success and failure side by side meant the build shipped the edge cases instead of discovering them in production." }
       ] },
-      { "label": "04 / DASHBOARD", "kind": "narrative", "groupKey": "overview", "title": "The dashboard became the product trust", "titleSerif": "hub", "body": [
-        "Every big moment answers the question before you ask it. What is verified, which account is connected, where the money goes, what happens next.",
-        "The home screen opens with portfolio value and interest earned, with detail tucked underneath. Calm to glance at, detailed when you dig in. The order is deliberate: portfolio value and 8.9% APY lead, then lifetime interest, compounding progress, monthly-interest and portfolio charts, then investment breakdown, auto-investment, and recent activity.",
-        "I wanted the first glance to say one thing clearly. Your money is here, it is growing, and you can see exactly how. Everything else waits for the people who want to dig."
+      { "label": "04 / DASHBOARD", "kind": "narrative", "groupKey": "overview", "title": "The dashboard became the trust", "titleSerif": "hub", "body": [
+        "The home screen leads with portfolio value and the APY, then lifetime interest, compounding progress, and the monthly-interest chart, then breakdown, auto-investment, and recent activity. Calm at a glance, detailed when you dig.",
+        "A How It Works explainer sits one tap away, so the model is never a mystery. Auto-investment and reinvesting are surfaced on the home screen, because the easiest way to grow trust is to show money quietly compounding without being asked.",
+        "I wanted the first glance to say one thing. Your money is here, it is growing, and you can see exactly how. Everything else waits for the people who want to dig deeper."
       ] },
       { "label": "05 / TRUST", "kind": "narrative", "groupKey": "trust", "title": "Explain before you", "titleSerif": "ask", "body": [
-        "The hardest moments are bank linking, ID, and buying. These are the points where a first-timer freezes. So I put plain explanations right where the doubt used to be.",
-        "Before I ask for your bank, I say why and what happens to it. Before ID, I say what gets verified and where it goes. Before a purchase, I show what you are buying and what comes next. No jargon dropped on you mid-flow.",
-        "Trust is the funnel. Every unexplained step is a place someone quietly decides not to continue. I treated explanation as a feature, not a footnote."
+        "The heaviest moments are identity, bank linking, and the security setup. These are where a first-timer freezes, because you are asking for proof and access at once. I built each one to explain itself before it asked for anything.",
+        "Plaid identity verification and the Plaid bank connection both open with what gets checked, where it goes, and why it is safe. Two-factor authentication is framed as protection for your money, not a chore. A clear verified state closes the loop so people know the hard part is done.",
+        "Trust is the funnel. Every unexplained step is a place someone quietly decides not to continue, so I treated explanation as a feature, not a footnote."
       ] },
       { "label": "06 / INVEST", "kind": "narrative", "groupKey": "invest", "title": "Buying, made", "titleSerif": "legible", "body": [
-        "Investing is where the business jargon hits hardest. Bond units, accrued interest, APY, maturity. I rewrote these moments so a first-timer can follow what they are doing and why.",
-        "The purchase flow confirms in plain terms: this is what you are committing, this is what you will earn, this is when. Recurring investment uses the same structure so the second time feels familiar, not new.",
-        "I designed the confirm and success states to close the loop. You do not just buy and wonder. You see it land, and you see what changes on your dashboard."
+        "Investing is where the jargon hits hardest. Bond units, accrued interest, APY, maturity. I rewrote these moments so a first-timer can follow exactly what they are doing and what it earns.",
+        "Funding a deposit, buying bonds, and confirming all read in plain terms: this is what you commit, this is what you earn, this is when. The success screen closes the loop so you see the purchase land and see your dashboard change, instead of buying and wondering.",
+        "Auto-investment, reinvesting, and refer-and-earn reuse the same structure, so the second and third actions feel familiar instead of new. Compounding only works if people trust it enough to leave it on."
       ] },
       { "label": "07 / WITHDRAW", "kind": "narrative", "groupKey": "withdraw", "title": "Taking money out is where trust gets", "titleSerif": "tested", "body": [
-        "Pulling money out is the moment an app proves it is honest. If withdrawal feels slow, vague, or hidden, people stop trusting everything else.",
-        "I designed the full set of screens: confirm, success, failure, and help. The bad paths get the same care as the good ones. A failed withdrawal tells you what happened and what to do, instead of leaving you staring at a dead end.",
-        "This is the engineer in me. The states people skip are the states that matter most. I would rather over-design the error than let someone feel abandoned with their own money."
+        "Pulling money out is the moment an app proves it is honest. If withdrawal feels slow, vague, or hidden, people stop trusting everything else they cannot see.",
+        "I designed the full set: the withdraw request, the successful state, and the failed state. The bad path gets the same care as the good one. A failed withdrawal says what happened and what to do next, instead of leaving someone staring at a dead end with their own money.",
+        "This is the engineer in me. The states people skip are the states that matter most, so I would rather over-design the error than let anyone feel abandoned mid-transaction."
       ] },
       { "label": "08 / SYSTEM", "kind": "narrative", "groupKey": "system", "title": "One system, not fifty", "titleSerif": "screens", "body": [
-        "I built CREB mobile-first, and every step (link, verify, buy, confirm) is designed to clear up doubt right when it shows up.",
-        "Underneath the screens is a shared system: components, patterns, and language reused across the whole journey. The sitemap and master flow fed straight into it, so the dashboard, investing, and withdrawal all speak the same way.",
-        "A system is also a handoff tool. When everything is one set of parts, engineers build faster and the product stays consistent as it grows. That mattered, because this shipped to production and keeps moving."
+        "CREB is mobile-first, with a web dashboard that shares the same language. Every step, link, verify, buy, confirm, withdraw, is built to clear up doubt the moment it shows up.",
+        "Underneath sits a shared system: components, patterns, and copy reused across the journey. The sitemap and master flow fed straight into it, so dashboard, investing, and withdrawal all behave the same way and never make someone relearn the interface.",
+        "A system is also a handoff tool. When everything is one set of parts, engineers move faster and the product stays consistent as it grows. That mattered, because this shipped to production and keeps shipping."
       ] },
       { "label": "09 / IMPACT", "kind": "impact", "groupKey": null, "title": "Trust moved the", "titleSerif": "numbers", "body": [
-        "Taking the doubt out of each step did what I hoped. More people finished, more money moved in, and the funnel held. When you explain before you ask, people commit."
+        "Taking the doubt out of each step did what I hoped. More people finished onboarding, more money moved in, and the funnel held all the way to a deposit. When you explain before you ask, people commit."
       ], "metrics": [
         { "v": "5x", "k": "Active investors", "sub": "400 to 2,000" },
         { "v": "10x", "k": "Value held", "sub": "$400k to $4M" },
         { "v": "~70%", "k": "Conversion lift", "sub": "across the journey" }
       ] },
       { "label": "10 / REFLECTION", "kind": "reflection", "groupKey": null, "title": "What I would push", "titleSerif": "further", "body": [
-        "The biggest lesson held up. In a money app, the design problem is rarely the layout. It is the doubt. Solve the doubt and the metrics follow.",
-        "If I kept going, I would push harder on the reporting and statements. People trust what they can verify over time, and there is room to make the long-term view as reassuring as the first impression. Trust is not a screen you ship once. It is something you keep earning."
+        "The lesson held. In a money app the design problem is rarely the layout, it is the doubt. Solve the doubt and the metrics follow.",
+        "If I kept going I would push the reporting and interest statements further. People trust what they can verify over time, and there is room to make the long-term view as reassuring as the first deposit. Trust is not a screen you ship once, it is something you keep earning."
       ] }
     ]
   },
@@ -89,38 +89,38 @@ export const caseStudies = {
     },
     "chapters": [
       { "label": "01 / CONTEXT", "kind": "narrative", "groupKey": null, "title": "Serious money raises the", "titleSerif": "bar", "body": [
-        "Accredited investors look closely. A $10,000 minimum makes every screen matter more. When the ticket is that size, a moment of doubt does not just cost a tap. It costs the whole deposit.",
-        "The product had to feel trustworthy enough for real money while staying as easy to read as an everyday app. Precise without showing off. Premium without ever being confusing. Those two pulls fight each other, and most fintech lands on cold and complicated.",
-        "I came to design from .NET engineering, so I read this as a states problem before a styling problem. Trust is the funnel. If a screen cannot explain itself before it asks for money or a bank login, people stop. So I planned to explain first, then ask, on every screen that mattered."
+        "Accredited investors look closely, and a $10,000 minimum makes every screen matter more. At that ticket size a moment of doubt does not cost a tap, it costs the whole deposit.",
+        "The product had to feel trustworthy enough for real money while reading as easily as an everyday app. Precise without showing off, premium without ever being confusing. Those two pulls fight each other, and most fintech lands on cold and complicated.",
+        "I came to design from .NET engineering, so I read this as a states problem before a styling one. Trust is the funnel. If a screen cannot explain itself before it asks for money or a bank login, people stop. So the plan was simple: explain first, then ask, on every screen that mattered."
       ] },
       { "label": "02 / GAPS", "kind": "gaps", "groupKey": null, "title": "What was missing on day", "titleSerif": "one", "body": [
-        "There was a product idea and a high minimum. There was no brand, no flow, and no system. I had to build all three at once and keep them in agreement."
+        "There was a product idea and a high minimum. There was no brand, no mapped journey, and no system. I had to build all three at once and keep them in agreement."
       ], "items": [
-        { "n": "01", "title": "No brand to lean on", "body": "A gold-bond product with no identity yet. I had to invent the look and prove it could feel premium without decoration, since decoration reads as cheap at this price point." },
-        { "n": "02", "title": "No mapped journey", "body": "Accreditation, bank connection, customizing the investment, buying, redeeming. None of it was sequenced. A high-stakes path with no map hits dead ends, and dead ends kill trust." },
+        { "n": "01", "title": "No brand to lean on", "body": "A gold-bond product with no identity yet. I had to invent the look and prove it could feel premium without decoration, because at this price point decoration reads as cheap." },
+        { "n": "02", "title": "No mapped journey", "body": "Accreditation, bank connection, customizing the investment, buying, redeeming. None of it was sequenced, and a high-stakes path with no map hits dead ends. Dead ends kill trust." },
         { "n": "03", "title": "One designer, every screen", "body": "Sole product designer across brand, UX, UI, and the system. No team to absorb the edge cases, so the system itself had to carry the consistency." }
       ] },
       { "label": "03 / PROCESS", "kind": "process", "groupKey": "system", "title": "How I worked it", "titleSerif": "out", "body": [
         "I built the system so the screens could stay calm. The premium feel gets decided in the spacing, long before any color lands."
       ], "items": [
-        { "n": "01", "title": "Structure the journey", "body": "Accreditation, bank connection, customizing the investment, buying, redeeming. I mapped the full flow first so a high-stakes journey never hit a dead end. Knowing the order told me where to slow down." },
+        { "n": "01", "title": "Structure the journey", "body": "Accreditation, bank connection, customizing the investment, buying, redeeming. I mapped the full flow first so a high-stakes journey never hit a dead end. Knowing the order told me exactly where to slow down." },
         { "n": "02", "title": "Wireframe the stakes", "body": "From rough to final, every screen earned its place. Wherever a money decision happened, the layout slowed down and explained itself. I would rather add a line of explanation than a moment of doubt." },
-        { "n": "03", "title": "Build the brand in", "body": "A new gold-forward identity, kept restrained. The premium feel comes from precision and space, not decoration. A quiet palette, a tight type scale, and components built to feel exact. The system did the heavy lifting." }
+        { "n": "03", "title": "Build the brand in", "body": "A new gold-forward identity, kept restrained. The premium feel comes from precision and space, not decoration. A quiet palette, a tight type scale, and components built to feel exact." }
       ] },
       { "label": "04 / OVERVIEW", "kind": "narrative", "groupKey": "overview", "title": "One system, not fifty", "titleSerif": "screens", "body": [
-        "I treated this as one system, not a pile of screens. A quiet palette, a tight type scale, and components built to feel exact. When the parts are exact, the whole thing reads as careful, and careful is what earns a $10k deposit.",
-        "Every screen follows the same rule: explain first, then ask. That consistency is the actual product. It means a person never has to relearn the interface halfway through a money decision.",
+        "I treated this as one system, not a pile of screens. A quiet, gold-forward palette, a tight type scale, and components built to feel exact. When the parts are exact the whole thing reads as careful, and careful is what earns a $10k deposit.",
+        "The dashboard leads with portfolio value and the interest rate, then holdings, the bond detail, and recent activity. The whole picture in one calm scroll. A bond detail page lets a serious investor inspect a position without leaving the flow.",
         "The restraint is deliberate. I left space instead of filling it. At this price point, calm is the signal that someone serious built this."
       ] },
-      { "label": "05 / DASHBOARD", "kind": "narrative", "groupKey": "buy", "title": "Buying, made plain and", "titleSerif": "exact", "body": [
-        "The dashboard opens with the numbers that matter and a clear picture of where the money sits. Portfolio value and accrued interest lead, then holdings, the interest-rate options, and recent activity. The whole picture in one calm scroll.",
-        "Buying, the calculator, deposits, and redemption all follow the same rule: explain first, then ask. The calculator shows what a choice means before the person commits to it, so the buy step is a confirmation, not a surprise.",
-        "I thought hard about the states people skip. Empty portfolio, pending deposit, mid-redemption. Each one gets a real screen, because the gaps are where trust leaks out."
+      { "label": "05 / BUYING", "kind": "narrative", "groupKey": "buy", "title": "Buying, made plain and", "titleSerif": "exact", "body": [
+        "Buying gold bonds, reviewing terms, and confirming all follow one rule: explain first, then ask. The buy step shows what you commit and what you earn before you agree to anything, so the review-and-accept screen is a confirmation, not a surprise.",
+        "A clear terms screen puts the legal language where a serious investor expects it, in plain layout instead of a wall of fine print. The success state closes the loop so the deposit feels finished, not floating.",
+        "I thought hard about the states people skip. Pending deposit, failed purchase, mid-redemption. Each gets a real screen, because at this ticket size the gaps are exactly where trust leaks out."
       ] },
       { "label": "06 / TRUST", "kind": "narrative", "groupKey": "trust", "title": "Reassurance, not", "titleSerif": "friction", "body": [
-        "Bank linking and accreditation are the heaviest trust moments. They are where most people hesitate, because you are asking for proof and access at the same time. So I designed them to feel like reassurance instead of friction.",
-        "Before each ask, the screen says what it needs and why. Explain before you ask. When someone understands the reason for a bank connection, the connection stops feeling like a risk and starts feeling like a step.",
-        "This is the part of the funnel where designs usually go cold and legal. I kept the same calm palette and spacing here, so the high-stakes screens look like the rest of the product, not like a separate compliance wall."
+        "Accreditation and bank linking are the heaviest trust moments. You are asking for proof of wealth and account access at the same time, which is where most people hesitate. I designed them to feel like reassurance, not friction.",
+        "Self-accreditation offers a clear path, whether someone qualifies by income, net worth, or license, and each option says what it needs and why before it asks. The Plaid bank connection and a clear verified state mean people always know what is checked and what is done.",
+        "This is the part of the funnel where designs usually go cold and legal. I kept the same calm palette and spacing here, so the high-stakes screens look like the rest of the product, not a separate compliance wall."
       ] },
       { "label": "07 / KEY SCREENS", "kind": "narrative", "groupKey": "system", "title": "A high-stakes journey made", "titleSerif": "calm", "body": [
         "Accredit, connect, customize, buy, confirm, redeem. The full path, built from one set of components. Because they share a system, the journey feels like a single product moving forward, not six handoffs between teams.",
@@ -135,8 +135,8 @@ export const caseStudies = {
         { "v": "100%", "k": "Screens shipped", "sub": "At v1" }
       ] },
       { "label": "09 / REFLECTION", "kind": "reflection", "groupKey": null, "title": "What I would push", "titleSerif": "further", "body": [
-        "The restraint paid off. The premium feel really did come from spacing and precision, not decoration, and that held up under a $10k ask. I would make that bet again.",
-        "What I would push further is the trust moments. Bank linking and accreditation are calmer than usual here, but there is more to win by showing progress and proof even earlier, before the person feels asked. The next version is where I would test that."
+        "The restraint paid off. The premium feel really did come from spacing and precision, not decoration, and it held up under a $10k ask. I would make that bet again.",
+        "What I would push further is the trust moments. Accreditation and bank linking are calmer than usual here, but there is more to win by showing progress and proof even earlier, before the person feels asked. The next version is where I would test that."
       ] }
     ]
   },

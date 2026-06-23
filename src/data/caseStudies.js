@@ -55,6 +55,10 @@ export const caseStudies = {
         "Pulling money out is the moment an app proves it is honest. If withdrawal feels slow, vague, or hidden, people stop trusting everything else they cannot see.",
         "I designed the full set: the withdraw request, the successful state, and the failed state. The bad path gets the same care as the good one. A failed withdrawal says what happened and what to do next, instead of leaving someone staring at a dead end with their own money.",
         "This is the engineer in me. The states people skip are the states that matter most, so I would rather over-design the error than let anyone feel abandoned mid-transaction."
+      ], "stateMachine": [
+        { "src": "/images/creb-r-withdraw.png", "label": "Request", "note": "Choose how much to take out. Plain numbers, no jargon, the amount you will receive shown up front." },
+        { "src": "/images/creb-r-withdraw-success.png", "label": "Success", "note": "The money is on its way, and you can see exactly when it should land. The loop closes." },
+        { "src": "/images/creb-r-withdraw-failed.png", "label": "Failed", "note": "It says what happened and what to do next, instead of leaving you staring at a dead end with your own money." }
       ] },
       { "label": "08 / SYSTEM", "kind": "narrative", "groupKey": "system", "title": "One system, not fifty", "titleSerif": "screens", "body": [
         "CREB is mobile-first, with a web dashboard that shares the same language. Every step, link, verify, buy, confirm, withdraw, is built to clear up doubt the moment it shows up.",

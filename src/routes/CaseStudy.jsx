@@ -6,6 +6,7 @@ import { byId, projects } from '../data/projects'
 import { caseStudies } from '../data/caseStudies'
 import { ia } from '../data/ia'
 import BeforeAfter from '../components/BeforeAfter'
+import StateMachine from '../components/StateMachine'
 import { EO, SPRING_DRIFT, SPRING_GLIDE } from '../lib/motion'
 
 // Information architecture map: a root node feeding labelled section columns.
@@ -138,7 +139,7 @@ function Chapter({ c, group, index }) {
           </div>
         </div>
       </section>
-      {group && <Gallery frames={group.frames} />}
+      {c.stateMachine ? <StateMachine states={c.stateMachine} /> : group && <Gallery frames={group.frames} />}
     </>
   )
 }

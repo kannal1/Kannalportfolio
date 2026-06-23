@@ -13,7 +13,7 @@ export default function LoadGate({ onDone }) {
   useEffect(() => {
     if (matchMedia('(prefers-reduced-motion:reduce)').matches) { onDone(); return }
 
-    const MIN = 1100
+    const MIN = 500
     const t0 = performance.now()
     let raf
     const tick = (now) => {

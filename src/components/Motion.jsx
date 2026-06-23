@@ -86,7 +86,8 @@ export function ScrubWords({ text, className }) {
   )
 }
 function ScrubWord({ p, a, b, children }) {
-  const opacity = useTransform(p, [a, b], [0.16, 1])
+  // floor at 0.5 so un-scrolled words still meet WCAG AA contrast; brightens to full on scroll
+  const opacity = useTransform(p, [a, b], [0.5, 1])
   return <motion.span aria-hidden="true" style={{ opacity, display: 'inline-block', marginRight: '0.26em' }}>{children}</motion.span>
 }
 

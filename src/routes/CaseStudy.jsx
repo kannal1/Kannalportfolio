@@ -66,7 +66,7 @@ function StepsList({ items }) {
       {(items || []).map((it, i) => (
         <Reveal key={i} className="cs-step" delay={i * 0.05}>
           <div className="sn">{it.n || String(i + 1).padStart(2, '0')}</div>
-          <div><h4>{it.title}</h4><p>{it.body}</p></div>
+          <div><h3>{it.title}</h3><p>{it.body}</p></div>
         </Reveal>
       ))}
     </div>

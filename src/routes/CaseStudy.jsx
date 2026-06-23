@@ -139,7 +139,7 @@ function Chapter({ c, group, index }) {
           </div>
         </div>
       </section>
-      {c.stateMachine ? <StateMachine states={c.stateMachine} /> : group && <Gallery frames={group.frames} />}
+      {c.stateMachine ? <StateMachine states={c.stateMachine} title={c.smTitle} /> : group && <Gallery frames={group.frames} />}
     </>
   )
 }

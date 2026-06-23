@@ -55,7 +55,7 @@ export const caseStudies = {
         "Pulling money out is the moment an app proves it is honest. If withdrawal feels slow, vague, or hidden, people stop trusting everything else they cannot see.",
         "I designed the full set: the withdraw request, the successful state, and the failed state. The bad path gets the same care as the good one. A failed withdrawal says what happened and what to do next, instead of leaving someone staring at a dead end with their own money.",
         "This is the engineer in me. The states people skip are the states that matter most, so I would rather over-design the error than let anyone feel abandoned mid-transaction."
-      ], "stateMachine": [
+      ], "smTitle": "Withdraw, every state", "stateMachine": [
         { "src": "/images/creb-r-withdraw.png", "label": "Request", "note": "Choose how much to take out. Plain numbers, no jargon, the amount you will receive shown up front." },
         { "src": "/images/creb-r-withdraw-success.png", "label": "Success", "note": "The money is on its way, and you can see exactly when it should land. The loop closes." },
         { "src": "/images/creb-r-withdraw-failed.png", "label": "Failed", "note": "It says what happened and what to do next, instead of leaving you staring at a dead end with your own money." }
@@ -120,6 +120,11 @@ export const caseStudies = {
         "Buying gold bonds, reviewing terms, and confirming all follow one rule: explain first, then ask. The buy step shows what you commit and what you earn before you agree to anything, so the review-and-accept screen is a confirmation, not a surprise.",
         "A clear terms screen puts the legal language where a serious investor expects it, in plain layout instead of a wall of fine print. The success state closes the loop so the deposit feels finished, not floating.",
         "I thought hard about the states people skip. Pending deposit, failed purchase, mid-redemption. Each gets a real screen, because at this ticket size the gaps are exactly where trust leaks out."
+      ], "smTitle": "Buy, every state", "stateMachine": [
+        { "src": "/images/cgb-f-buy.png", "label": "Buy", "note": "Set the amount. The screen shows what you commit and what you earn before you agree to anything." },
+        { "src": "/images/cgb-f-terms.png", "label": "Review terms", "note": "The legal language in plain layout, not a wall of fine print. A serious investor reads before they accept." },
+        { "src": "/images/cgb-f-success.png", "label": "Confirmed", "note": "The deposit lands and the loop closes, so a $10k purchase never feels like it is floating." },
+        { "src": "/images/cgb-f-failed.png", "label": "Failed", "note": "If it fails, it says why and what to do next. At this ticket size, a dead end is the fastest way to lose trust." }
       ] },
       { "label": "06 / TRUST", "kind": "narrative", "groupKey": "trust", "title": "Reassurance, not", "titleSerif": "friction", "body": [
         "Accreditation and bank linking are the heaviest trust moments. You are asking for proof of wealth and account access at the same time, which is where most people hesitate. I designed them to feel like reassurance, not friction.",

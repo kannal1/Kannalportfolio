@@ -34,7 +34,7 @@ function Fallback({ states }) {
   )
 }
 
-export default function StateMachine({ states }) {
+export default function StateMachine({ states, title = 'Every state' }) {
   const reduce = useReducedMotion()
   const ref = useRef(null)
   const n = states.length
@@ -54,7 +54,7 @@ export default function StateMachine({ states }) {
             {states.map((s, i) => <StateLayer key={i} p={scrollYProgress} i={i} n={n} s={s} />)}
           </div>
           <div className="sm-side">
-            <div className="sm-k">Withdraw, every state</div>
+            <div className="sm-k">{title}</div>
             <div className="sm-ticks">
               {states.map((s, i) => (
                 <div className={`sm-tick${i === active ? ' on' : ''}`} key={i}>

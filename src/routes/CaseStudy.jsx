@@ -7,6 +7,7 @@ import { caseStudies } from '../data/caseStudies'
 import { ia } from '../data/ia'
 import BeforeAfter from '../components/BeforeAfter'
 import StateMachine from '../components/StateMachine'
+import BrowserFrame from '../components/BrowserFrame'
 import { EO, SPRING_DRIFT, SPRING_GLIDE } from '../lib/motion'
 
 // Information architecture map: a root node feeding labelled section columns.
@@ -180,8 +181,10 @@ export default function CaseStudy() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
       <CsHero project={project} story={story} />
-      <div className="cs-cover">
-        <ParallaxImage src={project.cover} alt={`${project.name}, shipped product`} depth={10} zoom={false} eager />
+      <div className={`cs-cover${project.coverFrame ? ' framed' : ''}`}>
+        {project.coverFrame === 'browser'
+          ? <BrowserFrame url={project.coverUrl}><ParallaxImage src={project.cover} alt={`${project.name}, shipped product`} depth={10} zoom={false} eager /></BrowserFrame>
+          : <ParallaxImage src={project.cover} alt={`${project.name}, shipped product`} depth={10} zoom={false} eager />}
         <span className="cap">{project.short}, shipped product</span>
       </div>
       {project.compare && <BeforeAfter before={project.compare.before} after={project.compare.after} />}

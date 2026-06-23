@@ -69,6 +69,7 @@ export const projects = [
     tags: 'Consumer fintech, Compound, since 2024',
     line: 'I rebuilt the whole CREB experience: signing up, verifying ID, buying bonds, taking money out, the reports, and the design system that ties it all together.',
     cover: '/images/creb-r-dashboard-web.png',
+    coverFrame: 'browser', coverUrl: 'app.compoundbanc.com',
     metrics: [
       { v: '2,000', k: 'active investors', sub: 'from 400' },
       { v: '$4M', k: 'value held', sub: 'from $400k' },
@@ -89,6 +90,7 @@ export const projects = [
     tags: 'Premium fintech, Compound, 2025',
     line: 'A gold-bond product for serious investors. New brand, every screen built from scratch, done in three months.',
     cover: '/images/cgb-f-bonds.png',
+    coverFrame: 'browser', coverUrl: 'gold.compoundbanc.com',
     compare: { before: '/images/cgb-wireframe-hifi.png', after: '/images/cgb-screen-dashboard.png' },
     metrics: [
       { v: '3 mo', k: 'brand to ship', sub: 'solo' },

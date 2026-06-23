@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'fr
 import {
   RevealText, Reveal, ParallaxImage, ScrubWords, CountUp, useMagnetic,
 } from '../components/Motion'
+import BrowserFrame from '../components/BrowserFrame'
 import { EnterContext } from '../lib/enter'
 import { projects, identity, about } from '../data/projects'
 import { EO } from '../lib/motion'
@@ -123,7 +124,9 @@ function WorkProject({ p }) {
         </div>
       </div>
       <div className="wproj-media">
-        <ParallaxImage src={p.cover} alt={`${p.name}, shipped product`} depth={8} />
+        {p.coverFrame === 'browser'
+          ? <BrowserFrame url={p.coverUrl}><ParallaxImage src={p.cover} alt={`${p.name}, shipped product`} depth={8} /></BrowserFrame>
+          : <ParallaxImage src={p.cover} alt={`${p.name}, shipped product`} depth={8} />}
       </div>
     </motion.div>
   )

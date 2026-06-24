@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { motion, useScroll } from 'framer-motion'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Home from './routes/Home'
 import CaseStudy from './routes/CaseStudy'
 import Nav from './components/Nav'
@@ -58,6 +59,7 @@ export default function App() {
     <BrowserRouter>
       <Shell />
       <Analytics />
+      <SpeedInsights />
     </BrowserRouter>
   )
 }
